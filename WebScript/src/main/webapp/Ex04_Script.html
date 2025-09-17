@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+        let name = "hong"; // 글로벌 변수(전역변수)
+        // 함수밖에 선언되는 모든 변수는 전역 변수
+        function call(){
+        	let age = 20; //local변수
+        	console.log("당신의 이름은 : " + name + ", 나이는 : " + age);
+        }
+        /*
+            1. 변수 생성 -> 값 입력 -> 타입 생성(number, string, date)
+            var a;
+            let b;
+            
+            a = 10l
+            b = "A";
+            b = 'A';
+            "",'' 둘 다 문자열
+            
+            ES5문법(var는 전역적으로 쓰이기 때문에 문제가 있다....
+            		어떨때는 지역으로 들어가서 혼란스럽다...)
+                -> var 권장하지 않지만 현재도 쓰는 사람이 있다.
+            
+            ES6문법 (ECMA) : 2015년에 let, const를 만듬
+               -> 권장 : let, const만 사용해라.
+            
+            초기화(변수에 처음 값이 저장되는 것을 말함)
+            자바스크립트(정수, 실수, boolean, 문자열)
+                내부적으로 가지는 타입 : 
+                	number, boolean, array, Object, string 등등
+                	number 1개로 정수, 실수 다 써먹는다고 함
+                값을 변수에 넣을 때 타입이 결정됨
+            
+            변수(scope)
+            1. 현재 페이지 기준 : Ex04_Script.html
+            
+            let data = 100; // 이 data의 scope는?
+            		// 페이지 전체 : 글로벌이라고 부름(global, 전역)
+                   // 페이지 전체에서 사용가능
+            function call(){ let age = 20; //여기서 age는 지역변수(함수 안에서만) }
+        */
+        let n; // 전역변수(함수안에 들어있지 않으면 전부 전역)
+        console.log(n); // 정의되지 않음
+        //사용하기 전에 초기화 하기
+        n = 100;
+        
+        let i, j;
+        i = 100;
+        j = 200;
+        const result = i + j;
+        console.log(result);
+        
+        let intnum = 10; //정수 number
+        let dnum = 12.345; // 실수 number
+        let flag = true; // boolean
+        let str = null; //값이 없다 null은 객체로 봄(Object 타입)
+        let str2 = "ABC"; //문자열 String
+        
+        console.log("intnum : "+ typeof(intnum));
+        console.log("dnum : " + typeof(dnum));
+        console.log("flag : " + typeof(flag));
+        console.log("str : " + typeof(str));
+        console.log("str2 : " + typeof(str2));
+        
+        //javascript 연산자
+        // 산술, 논리, 관계
+        let num1 = 10;
+        let num2 = 3;
+        
+        //브라우저 화면에 띄움
+        document.write((num1/num2) + "<br />");
+        document.write((num1%num2) + "<br />");
+        
+        // 관계 연산
+        // ==과 ===
+        // == 데이터 비교(값이 같으면 true)
+        // === 값이 같고, 타입도 같아야 true
+        // === 권장함
+        let a = 3;
+        let b = 5;
+        console.log("a와 b와 같습니까? " + (a == b)); //false
+        console.log("a와 b는 다른가요? " + (a != b)); // true
+        console.log("a가 b보다 큰가요? " + (a > b)); // false
+        
+        //논리 연산
+        console.log((10 > 5) && (1 != 3)); //true
+        console.log((10 < 5) || (1 != 3)); // true
+        
+        //삼항 연산자
+        let result2 = (4 % 2 == 0) ? "짝수" : "홀수";
+        console.log("홀짝? " + result2);
+        
+        //대입 연산자(+=, -=, *=, /=)
+        let p = 10;
+        let k = 5;
+        p += k; // p = p + k;
+        console.log(p);
+        
+        let x = 5 + 5;
+        let y = "5" + 5; // +가 산술도하고 결합도 함
+        console.log("y = " + y); // 55 결합으로 사용됨
+        // 문자열 + 정수 -> 문자열(결합)
+        
+        let v = "5";
+        let v2 = 5;
+        let v3 = 5;
+        console.log(v == v2); //== 값비교 : true
+        console.log(v === v2);// === 값 + 타입 비교
+        // String과 number이므로 false
+        // ===많이 사용한다
+        console.log(v2 === v3); // true
+        // 값 + 타입 모두 동일
+        
+    </script>
+</head>
+<body>
+    <button onclick="call()">클릭</button>
+</body>
+</html>

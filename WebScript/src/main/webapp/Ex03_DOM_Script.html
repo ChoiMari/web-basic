@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+        function print(){
+        	let ele = document.getElementById("demo"); // id가 demo요소를 찾아서 가져온다
+            console.log(ele);
+        	ele.innerHTML += "<br/>졸리워요.."; //기존 데이터에 추가
+        	// 덮어쓰기는 =
+        	//div, p는 value 속성이 없다
+        	//그래서 태그 사이에 값을 넣음
+        	// 방법은
+        	// innerText는 태그를 텍스트로 봄
+        	// innerHTML는 태그를 넣을 수 있음(적용됨)
+        }
+    </script>
+</head>
+<body>
+    <!-- 
+        돔방식 : 
+        메모리에 DOM tree 형태로 로딩이 된다
+        그리고 접근해서 사용함
+        단점 : 처음 로딩이 느리다(메모리에 다 펼쳐놓고 쓰니까..)
+        장접 : 접근 제어가 편하다
+     -->
+    <button onclick="print()">클릭하세요</button>
+    <p id="demo">
+        demo라는 id는 p태그를 식별하는 값이다.
+    </p>
+</body>
+</html>

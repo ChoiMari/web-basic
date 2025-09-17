@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+        //순서에 상관없이 프로그래밍(함수 만들어서 호출)
+        function data(){
+            let element = window.document.forms[0].elements[0];
+            alert(element);
+        }
+    </script>
+</head>
+<body>
+    <form action="#" method="get" name="myform">
+        <input type="text"     name="userid" value="hong111"><br>
+        <input type="password" name="pwd"    value="1004"><br>
+        <input type="submit" value="전송">
+    </form>
+        
+    <input type="button" value="함수호출" onclick="data()">
+    
+        <script type="text/javascript">
+        /*
+            javascript해석(웹브라우저가 함 : 수많은 자원을 가지고 있음(객체)
+            제공받는 객체 -> 내장 객체 -> 도큐먼트 객체)
+        */
+        window.document.write("방가방가<br>"); //웹브라우저의 도화지에다 방가방가 쓰겠다
+        document.write("window 객체 생략 가능<br>");
+        console.log("디버깅, 결과 미리 보기, 오류 메세지 확인");
+        //window 브라우저 최상위 객체
+        // 브라우저가 제공하는 모든 기능이 window밑에 있음
+        //document : window객체 속성 중 하나
+        // 현재 열려 있는 웹 페이지(HTML문서)를 가리킴
+        //HTML을 동적으로 조작할 수 있는 모든 기능을 제공
+        // window.document === document 
+        // 그래서 window.을 생략 할 수 있다
+        // document.write() HTML문서에 직접 문자열을 그대로 써넣는 함수
+        // -> 옛날 방식(지금은 DOM조작을 사용함)
+                
+        //var, let, const
+        var num; // 타입이 정해져 있지 않음
+        console.log(num); //undefined : 아직 정해지지 않았다(오류아님)
+        num = 10; //값을 가지는 순간 타입이 결정됨
+        console.log("num : " + num);
+        
+        console.log(typeof(num)); // number
+        let str = "world";
+        //var말고 let사용 권장함
+        console.log("str : " + str);
+        console.log(typeof(str));
+        //POINT
+        let element = window.document.forms[0].elements[0];
+        console.log(element);
+        //여러개의 폼을 가질 수 있음, 그중에 0번째꺼의 요소들중에서 0번째꺼
+        //Cannot read properties of undefined (reading 'elements')
+        // 인터프리터가 라인 단위로 감.
+        // 그래서 읽을 수 없다
+        // 그래서 스크립트 블럭이 body태그 끝나기 전에 넣는다.
+        // 자바스크립트는 인터프린터 언어라서
+        // 자바스크립트는 순서대로 실행된다.
+        // head에 넣으면 돔객체에 아무것도 없음
+        // 그래서 body태그 끝나기 전에 넣어야
+        // 태그들이 메모리에 올라와있음
+        
+        console.log(element.value);
+        console.log(element.value.length); //내부적으로 캐릭터배열이라 length가능
+        //form 태그가 DOM객체 형태로 메모리에 올라간 뒤에 접근 가능
+        
+        let value = window.document.myform.userid.value;
+        console.log("value : " + value);
+        
+        if(value.length < 5){
+        	alert("다시 입력해");
+        	element.value="";
+        }
+    </script>
+</body>
+</html>
