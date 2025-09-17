@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    .imgbox {
+      float: left;
+      text-align: center;
+      width: 120px;
+      border: 1px solid gray;
+      margin: 4px;
+      padding: 6px;
+    }
+    
+    button {
+      width: 100%;
+    }
+    </style>
+</head>
+<body>
+
+    <h2>Difference between display:none and visiblity: hidden</h2>
+    <p><strong>visibility:hidden</strong> hides the element, but it still takes up space in the layout.</p>
+    <p><strong>display:none</strong> removes the element from the document. It does not take up any space.</p>
+    
+    <div class="imgbox" id="imgbox1">Box 1<br>
+      <img src="images/2.jpg" alt="Italy" style="width:100%">
+      <button onclick="removeElement()">Remove</button>
+    </div>
+    
+    <div class="imgbox" id="imgbox2">Box 2<br>
+      <img src="images/3.jpg" alt="Lights" style="width:100%">
+      <button onclick="changeVisibility()">Hide</button>
+    </div>
+    
+    <div class="imgbox">Box 3<br>
+      <img src="images/4.jpg" alt="Forest" style="width:100%">
+      <button onclick="resetElement()">Reset All</button>
+    </div>
+
+    <script>
+    /*
+        display="none" 요소가 화면에서 완전히 사라짐(공간차지X)
+            -> 다른 요소들이 자리를 매꿈
+            -> HTML 코드에는 여전히 존재(개발자도구로는 확인, 화면에만 안보임)
+            -> 공간도 사라지고, 그 자리에 다른 박스가 들어옴
+            -> DOM(문서구조)에는 남아있지만 눈으로 보기엔 완전히 없어지고 공간 차지도 안함
+        visibility="hidden"
+            -> 레이아웃(공간)은 유지하면서 보이지 않음
+            -> 투명한 박스
+    
+    */
+        function removeElement() {
+          document.getElementById("imgbox1").style.display = "none";
+        }/*브라우저 객체의 요소를 찾음(id값)*/
+        
+        function changeVisibility() {
+          document.getElementById("imgbox2").style.visibility = "hidden";
+        }
+        
+        function resetElement() {
+          document.getElementById("imgbox1").style.display = "block";
+          document.getElementById("imgbox2").style.visibility = "visible";
+        }
+    </script>
+
+</body>
+</html>
+
+
