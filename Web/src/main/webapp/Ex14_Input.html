@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Form  태그 안에서 구현되는 input 태그들</title>
+</head>
+<body>
+        <form action="">
+                <fieldset><!-- fieldset : 테두리로 묶어줘서 ui 테두리 -->
+                    <legend>Text:Password</legend>
+                    Text: <input type="text" name="userid" id="userid"><br>
+                    <!-- name속성은 server 에서 데이터 받을때 -->
+                    <!-- id속성은 client (css , javascript 통해서) 비동기식 전송-->
+                    Password: <input type="password" name="pwd" maxlength="5"><br>
+                    <hr>
+                    Text: <input type="text" maxlength="10" value="기본값" size="100px"><br>
+                    <!-- value : 디폴트값 넣어놓음 -->
+                    <hr>
+                    readonly (읽기전용 : 서버로 전송 가능)<br>
+                    Text : <input type="text" name="user" value="hong" readonly>
+                    <hr>
+                    disabled (비활성화 : 서버로 전송 **불가능**)<br>
+                    Text : <input type="text" name="user" value="kim" disabled> 
+                </fieldset>
+                <fieldset>
+                    <legend>체크박스(다중선택)</legend>
+                    당신의 취미는<br>
+                    농구: <input type="checkbox" name="sports_1" value="A" checked>
+                    야구: <input type="checkbox" name="sports_2" value="B" >
+                    축구 :<input type="checkbox" name="sports_3" value="C" >
+                    <!-- 
+                        register.jsp?sports_1=A&sports_2=B&sports_3=C
+                        
+                        String s = request.getParameter("sports_1")
+                        String s2 = request.getParameter("sports_2")
+                        String s3 = request.getParameter("sports_3")
+                        
+                        -------------------------------------------
+                        name 같이 사용
+                        농구: <input type="checkbox" name="sports" value="A" checked>
+                        checked : 디폴트로 선택되어있음
+                        야구: <input type="checkbox" name="sports" value="B" >
+                        축구 :<input type="checkbox" name="sports" value="C" >
+                        
+                        register.jsp?sports=A&sports=B&sports=C
+                        
+                        String s = request.getParameter("sports")
+                        한번에 받음(getParameterValues) 리턴타입 String[]
+                        같은게 반복되면 배열
+                        String[] sportsarr = request.getParameterValues("sports")
+                        sportsarr[0] = "A"
+                        sportsarr[1] = "B"
+                        sportsarr[2] = "C"
+                     -->
+                </fieldset>
+                <fieldset>
+                    <legend>select 태그 (단일선택 : 년 월 일)</legend>
+                    <select name="year">
+                        <option value="2022">2022년</option>
+                        <option value="2023">2023년</option>
+                        <option value="2024" selected>2024년</option>
+                        <option value="2025">2025년</option>
+                    </select>
+                </fieldset>
+                <!-- 
+                        register.jsp?year=2024
+                        웹서버에서 받는 모든 데이터는 문자열
+                        -> 변환작업이 필요하다
+                        
+                        int year = Integer.parseInt(request.getParameter("year"));
+                        
+                        option 태그 반복 내부적으로  Array 관리 ....
+                                        
+                 -->
+                <fieldset>
+                <!-- select태그 웹접근성 문제로 사용하지 말라고 하심 -->
+                    <legend>select 태그 (다중선택 : 웹 접근성 문제)</legend>
+                    <select name="year" multiple="multiple">
+                        <option value="2022">2022년</option>
+                        <option value="2023">2023년</option>
+                        <option value="2024" selected>2024년</option>
+                        <option value="2025">2025년</option>
+                    </select>
+                </fieldset>
+                
+                <fieldset>
+                    <legend>라디오 버튼 (단일 선택 : 남, 여) : name 이 같으면 하나의 그룹</legend>
+                    남 <input type="radio" name="gender" value="1"><br>
+                    여 <input type="radio" name="gender" value="2" checked><br>
+                    <br>
+                    대 <input type="radio" name="product" value="1" checked><br>
+                    중 <input type="radio" name="product" value="2"><br>
+                    소 <input type="radio" name="product" value="3"><br>
+                </fieldset>
+                <fieldset>
+                    <legend>기타 등등</legend>
+                    1. 화면에 출력이 안되요(소스는 가지고 있어요)
+                    <input type="hidden" value="1000" name="data"><br>
+                    <!-- hidden에 중요한 정보 노출X(소스는 가지고 있기 때문에), 화면에 감추고 가지고 놀때만 사용하기 -->
+                    2. 파일 업로드 (클라이언트 파일 선택 가능)
+                    <input type="file" name="uploadfile">
+                    3. 게시판 글쓰기 (여러줄 ) 초기크기(rows , cols 몇줄에 몇칸)<br>
+                    <textarea rows="10" cols="10">기본크기</textarea>
+                    4. 각종 버튼들
+                     <input type="button" value="나 눌러봐" onclick="alert('잠이온다')">
+                     <!-- onclick하면 실행되는 함수(이벤트핸들러) -->
+                     <br>
+                    <!-- 
+                        type="image"
+                        type="submit"
+                        type="reset"
+                        
+                        필수 태그
+                     -->
+                </fieldset>
+                
+        </form>
+</body>
+</html>
