@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+<!-- 
+    개발자 필수 태그
+        메모장으로 회원가입 태그를 작성할 수 있어야 한다.
+        로그인 태그 작성할 수 있어야 한다.
+ -->
+ <!-- 동기식 전송에서 name속성(변수) 안쓰면 데이터 못받음 
+ request.getParameter(name속성값)로 받을 수 있음 -->
+    <form action="Ex13_ok.jsp" method="post">
+        ID : <input type="text" name= "userid"><br />
+        PW : <input type="password" name="userpw"><br />
+        <input type="submit" value="전송"> <!-- 전송 클릭하면 action으로 이동함 -->
+        <input type="reset" value="초기화">
+    </form>
+    <!-- 
+        form 태그는 전송을 담당하는 태그
+        클라이언트가 입력한 데이터를 가지고 목적지(action)까지 배송
+        
+        action은 목적지 주소
+            jsp에서는 action은 서버주소 action="Ex13_ok.jsp"
+            servlet -> action="Ex15_ok_do"
+        
+        form은 운송수단
+            운송 방식(method)
+            동기식 방식은 get, post 두개
+            method="post" 비행기 (노출 X) http내부 header 안에 숨겨서 가져감
+            method="get" 배 Ex13_ok.jsp?userid=hong&userpw=1004
+            이게 url에 노출됨(보안상 X)
+            
+            어떤 상황은 배만 타야되는 경우가 있다
+             -> 링크 이동, ex) <a href="boardDetail.jsp?no=100"></a> 100번 글 이동
+                    
+            나머지 delete, put 등은 비동기라고
+            
+        동기식에서는 get, post밖에 없다
+        비동기식 : REST 방식에서 사용(의미를 부여함)
+            get : 데이터 보여줘
+            post : 데이터 insert
+            put : 데이터 수정
+            delete : 데이터 삭제
+            
+        POINT
+            1. <input type="submit" value="전송">
+            2. <input type="button" onclick= "call()"> 자바스크립트로 submit()
+            2-1. function call() {document.form.submit();}
+            3. <input type="image" src="이미지경로"> 내부적으로 submit
+                이미지 자체가 submit을 가지고 있다.
+     -->
+</body>
+</html>
