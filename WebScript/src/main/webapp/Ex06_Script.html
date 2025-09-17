@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        /*
+            JAVA의 모든 함수는 클래스 안에서만 정의가 가능하다
+            클래스 안에 정의된 함수를 메서드라고 부른다(객체 없이 독립적인 실행 불가)
+            접근제한 리턴타입 메서드명(){return ;}
+            
+            자바스크립트의 함수 - 객체(클래스)없이 독립적인 실행이 가능
+            function print(){}
+            function print(){return ;} //-> 리턴타입 안씀
+            function print(num, num2) {return num + num2;}
+            //-> 파라미터에 타입 안씀(유연)
+            // 자바스트립트에서는 함수의 파라미터는 변수명만 작성한다.
+        */
+        
+        function callConfirm(){ //->사용자 정의 함수(개발자가 정의)
+            	
+                //내장 함수(브라우저 내부에 심어져 있음)
+                if(window.confirm("삭제할까요?")){ // 네,아니오 선택가능한 alert창 띄움
+                	alert("네"); //-> 네 누르면 해당 코드가 실행됨
+                }else{
+                	alert("아니오"); //-> 아니오 누르면 해당 코드가 실행됨
+                }
+            }
+        /*
+            전통적인 팝업창 띄우기
+                별도의 html 파일을 만들어서 팝업창을 띄운다
+                window.open(URL, name, specs...)
+            
+            Bootstrap은?
+                그 페이지 안에서 div를 만들고 div modal로 띄운다
+        
+        */
+        function showPopup(){
+        	window.open("Ex06_Popup.html", "zipcode", "width=200,height=200");
+        }
+        
+        //팝업창 제어하기
+        function myFunc(){
+            let popupWindow = window.open("Ex06_Popup.html", "zipcode", "width=200,height=200");
+            //popupWindow : 화면에 올라온 팝업창을 가리킴, 팝업된 창(하나의 윈도우 창이 된다고 함)
+            popupWindow.document.write("<p>this is zipcode</p>");
+        }
+        
+        function goUrlTime(url){
+        	window.setTimeout("location.href='" + url + "'", 3000); //3초 뒤에 실행 하겠다
+        	//로케이션 객체가 이동시킨다고 함
+        	//setTimeout :  일정 시간이 지나면 실행함
+        	//url www.naver.com 
+        	// location.href=  이건 서버에게 새로운 페이지를 요청하는 것
+        	// 서버 단에서는 리다이렉트와 같음
+        }
+        
+        function myCallFunc(i, j, k){
+        	return i+j+k;
+        }
+        
+        // 자바스크립트 이름없는 함수 (익명함수) - 일회용(재사용X)
+        // 일회성(1번만 쓸 경우에 사용)
+        // function 함수명(){} - 일반 함수
+        
+        //익명 함수
+        changeColor = function(){
+        	window.document.bgColor = 'silver';
+        	window.document.fgColor = "red";
+        }
+    </script>
+<title>Insert title here</title>
+</head>
+<body>
+    <h3>내장 함수, 사용자 정의 함수 호출하기</h3>
+    <button onclick="callConfirm()">클릭이라는 사건이 발생하면 함수를 호출</button>
+    <br />
+    <button onclick="showPopup()">팝업창(별도의 페이지를 창으로 띄움 - 전통적방식)</button>
+    <br />
+    <button onclick="myFunc()">팝업창 제어(별도의 페이지를 창으로 띄움 - 전통적방식)</button>
+    <button onclick="goUrlTime('http://www.daum.net')">3초뒤 이동</button>
+    <br />
+    <button onclick="changeColor()">이름 없는 익명함수 호출</button>
+</body>
+</html>
