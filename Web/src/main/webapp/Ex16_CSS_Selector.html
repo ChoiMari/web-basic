@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript"></script>
+    <style type="text/css">
+    /*
+        개발자가 알아야할 CSS 선택자
+            DOM객체에서 어떤 요소를 찾아서 어떤 옷을 입힐 것인가?
+            셀렉터 개념 -> css, js, jquery
+        1. 기본 선택자(기존에 있는 태그들)
+            -> p, div, hr, h3
+            ex) p {color :red}
+        2. 다중 선택자(태그 묶음)
+            ex) p, h2, h3, h4{color: blue}
+        3. 개발자(사용자 정의)
+            ex) . 클래스(대부분)
+                # id
+        4. 결합 선택자
+            ex) p.one{border:1px;} p태그의 class명이 one인 요소를 찾아서 스타일 적용
+                <p class="one"></p> 이 태그에 적용됨
+                p.two{border:1px;}
+                <p class="two"></p> 이 태그에 적용됨
+        5. 자손(후손) 선택자
+            ex) div p{color: green} div 태그 안에 있는 모든 태그에 적용해라
+        6. 자식 선택자(바로 밑에 있는 태그만)
+            ex) .parent > p 클래스가 parent고 그 안의 태그가 p에 스타일 적용
+                <div class="parent"><p></p></div>
+        7. 속성 선택자(attribute)
+            ex) input[type=text] {color:red;}
+            input태그의 type=text인 속성을 찾아서 적용
+        8. + 인접형제, ~ 일반 형제
+        9. 가상선택자
+            ex) a:link 의미해석
+    */
+    
+        div p{ /*div태그안의 모든 p태그에 적용*/
+            color: green;
+            font-family: "궁서체", "명조체", "광수체"
+            /*궁서체가 없으면 명조체, 명조체가 없으면 광수체 적용해라는 뜻*/
+        }
+        .parent > p {/*클래스가 parent를 찾아서 바로밑(자식)의 p태그에만 적용함*/
+            border: 1px double blue;
+            padding: 10px;
+            font-size: 15px;
+            color : pink;
+        }
+        input[type=text]{
+            color:red;
+        }
+        input[type=button]{
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <p>나는 어떤 스타일이 적용될까</p>
+        <div>DIV태그</div>
+        
+        <h3>하위 자손 선택자</h3>
+        <div>
+                <p>선택자</p>
+                <p>
+                    선택자2
+                    <p>선택자3</p>
+                </p>
+                <div>
+                    <p>선택자4</p>
+                </div>
+        </div>
+        <h3>자식 선택자</h3>
+        <div class="parent">
+            <p>문단태그</p>
+        </div>
+        <hr>
+        <input type="text" value="css적용">
+        <input type="button" value="css적용">
+</body>
+</html>
