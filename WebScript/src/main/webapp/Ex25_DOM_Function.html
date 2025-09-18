@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+        function displayData(){
+            console.log("Call");
+            document.getElementById("demo").innerHTML = new Date();
+        }
+    
+        window.onload = function() {
+            //document.getElementById('mybtn').onclick.displayData;
+        }
+    </script>
+</head>
+<body>
+    <button id="mybtn">눌러봐</button>
+    <br>
+    <button id="mybtn2" onclick="displayData()">눌러봐2 괄호가</button>
+    <br>
+    <p id="demo"></p>
+</body>
+    <script type="text/javascript">
+        //document.getElementById('mybtn').onclick = displayData();
+        //동적으로 이벤트 함수를 호출하면 ... 그런데 그 함수에 괄호가 있다면 ... 
+        //라인단위 read(읽을때)될때 호출 되어 버려요
+        //displayData() 괄호로 주면 함수 호출이 되어버림... 
+        //함수를 이벤트에 붙일때는 ()를 생략하고 준다
+        document.getElementById('mybtn').onclick = displayData;// displayData() (x)  POINT
+    </script>
+</html>
