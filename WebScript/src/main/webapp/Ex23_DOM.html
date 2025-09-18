@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+        window.onload = function(){ //onload이걸 안쓰려면
+        	//body태그 끝나기 전에 넣기(교수님은 끝나고 넣으심)
+        	//DOM 계층 트리 : node(부모, 자식, 형제 개념)
+        	let menode;
+        	menode = document.getElementById("me");// <div id="me">C</div>
+        	menode.style.backgroundColor = "gold";
+        	
+        	let parentNode = menode.parentNode; //<body>
+        	parentNode.style.backgroundColor = "blue";
+        	
+        	let grandNode = parentNode.parentNode; //<html>
+        	grandNode.style.backgroundColor = "green";
+        	
+            let my = document.getElementById("mychild");
+            //<ul id="mychild"><li>AA</li><li>BB</li><li>CC</li></ul>
+            console.log(my);
+            console.log(my.firstChild.nodeName);
+            //firstChild : <li>AA</li> ,nodeName : li
+            console.log(my.firstChild.innerText); //AA
+            
+            //value 속성이 없는 친구들 : div, p, li, span
+            //innerHTML, innerText로 제어함
+            // <div>방가방가</div>
+            console.log(my.firstChild.nextSibling.innerText);
+            //firstChild <li>AA</li>의 nextSibling <li>BB</li>의 innerText는 BB
+            
+            console.log(my.hasChildNodes);
+            console.log(my.childNodes); //배열 : 첨자 접근 가능[]
+            
+            console.log(my.childNodes[0]);
+            console.log(my.childNodes[1]);
+            console.log(my.childNodes.length);
+        }
+    </script>
+</head>
+<body>
+    <div>A</div>
+    <div>B</div>
+    <div id="me">C</div>
+    <div>D</div>
+    <div>E</div>
+    <ul id="mychild">
+        <li>AA</li>
+        <li>BB</li>
+        <li>CC</li>
+    </ul>
+</body>
+</html>
