@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+        let str = "10+20+30";
+        document.write(str + "<br>")
+        
+        // 1. eval() 
+        // 문자열 수식을 계산식으로 바꿔준다.
+        //    조건 -> 문자열 껍질을 나오면 대신 연산이 가능해야함
+        // "10+20+30" -> 계산
+        // "10+20A+30" -> 예외
+        document.write("eval() : " + eval(str) + "<br>");
+        
+        // 2. isNaN() : is Not a Number? 너 숫자 아니니?
+        		//-> true : 숫자 아니다
+        		//-> false : 숫자다
+        document.write(isNaN("12345") + "<br>"); // false
+        document.write(isNaN("12A345") + "<br>"); //true 숫자 아니야
+        document.write(isNaN("대한민국") + "<br>"); //true 숫자 아니야
+        document.write(isNaN('12345') + "<br>"); //false
+        
+        let i = "100";
+        let j = "200";
+        document.write("결합 : " + (i + j) + "<br>");
+        // 자바스크립트는 + 가 산술도 하고 결합(연결연산자)도 함
+        document.write(Number(i) + Number(j)); // 연산
+        
+        //Numper()
+        //parseInt()
+    </script>
+</head>
+<body>
+
+</body>
+</html>
