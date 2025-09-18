@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+        function eventProductor(frm){
+        	console.log(frm);
+        	console.log(frm.productor.value);
+        	//console.log(frm.productor.text);
+        	
+        	//select 태그가 가지는 옵션(option)은 배열
+        	// 배열의 인덱스로 접근
+        	console.log("index : " + frm.productor.selectedIndex);
+        	//[option][option][option][option] 
+        	console.log(frm.productor.options[0].value);
+        	console.log(frm.productor.options[0].text);
+        	
+        	let index = frm.productor.selectedIndex;
+        	let text = frm.productor.options[index].text;// POINT
+        	let value = frm.productor.options[index].value;
+        	
+        	if(index == 0){
+        		frm.valProductor.value = "";
+        		frm.textProductor.value = "";
+        	}else{
+        		frm.valProductor.value = value;
+                frm.textProductor.value = text;
+        	}
+        	
+        }
+    </script>
+</head>
+<body>
+    <h3>모델별 최저가 검색</h3>
+    <br>
+    <!-- this.을 하면 1단계올라간다고함 -->
+    <form name="frmdata">
+        <select style="width: 200px" name="productor" onchange="eventProductor(this.form)">
+            <option value="A000" selected>제조사</option>
+            <option value="A001">삼성전자</option>
+            <option value="A002">LG전자</option>
+            <option value="A003">Apple</option>
+            <option value="A004">Dell</option>
+        </select> 
+            <input type="text" name="valProductor" size="10"> 
+            <input type="text" name="txtProductor" size="10"> <br>
+    </form>
+​
+</body>
+</html>
