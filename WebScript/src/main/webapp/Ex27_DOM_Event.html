@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <button id="mybtn">클릭</button>
+</body>
+<script type="text/javascript">
+    let x = document.getElementById("mybtn");
+    
+    //addEventListener()로 한 건 제거 가능
+    //x.onMouseOver = myFunc; 은 제거 못한다고 함
+    x.addEventListener("mouseover", myFunc);
+    x.addEventListener("mouseout", myFunc2);
+    x.addEventListener("click", myFunc3);
+    
+    function myFunc(){
+    	document.getElementById("mybtn").innerHTML += "MOUSE OVER<br>";
+    }
+    function myFunc2(){
+        document.getElementById("mybtn").innerHTML += "MOUSE OUT<br>";
+    }
+    function myFunc3(){
+        document.getElementById("mybtn").innerHTML += "MOUSE CLICK<br>";
+    }
+</script>
+</html>
