@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+    window.onload = function(){  //DOM 객체 생성 이후에 보장
+            let btnobj =document.getElementById('btngetdata');
+             
+            btnobj.onclick = function(){  //객체.이벤트명 = 콜백함수(익명함수)
+                let txtmsg = document.getElementById("txtmessage");
+                let str="";
+                str += "ID : " + txtmsg.getAttribute("id");   //"txtmessage"
+                str += " VALUE : " + txtmsg.getAttribute("value"); //hello
+                console.log(str);
+             }
+            
+        
+            document.getElementById("btncreate").onclick = function(){
+                
+                  let txtname = document.createElement('input');
+                  txtname.setAttribute("type", "text");
+                  txtname.setAttribute("id", "txtbox");
+                  txtname.setAttribute("value", "홍길동");
+                  
+                  document.body.appendChild(txtname);
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="txtmessage" value="hello">
+    <input type="button" id="btngetdata" value="getInfo">
+    <hr>
+    <input type="button" id="btncreate" value="동적생성">
+</body>
+</html>
