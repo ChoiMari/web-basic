@@ -42,11 +42,12 @@
                 // body태그의 자식요소로 추가(append)
                 //태그이름.setAttribute("속성","값");
                 let img = document.createElement("img");
-                img.setAttribute("src", "images/w3schools.jpg");
+                img.setAttribute("src","images/w3schools.jpg");
                 //<img src = images/w3schools.jpg>
-                img.sertAttribute("width", 150);
-                img.sertAttribute("height", 150);
-                doucument.body.appendChild(img);
+                img.setAttribute("width", 150);
+                img.setAttribute("height", 150);
+              //<img src="images/w3schools.jpg" width="150" ...>
+                document.body.appendChild(img)
                 
             }
     </script>
