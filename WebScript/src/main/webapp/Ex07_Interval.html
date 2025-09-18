@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+    /*
+        https://www.w3schools.com/jsref/met_win_setinterval.asp
+        
+        myInterval = setInterval(function, milliseconds);
+        ex)setInterval(function(){}, 2000); // 2초마다 함수가 호출(callback함수)
+        프로그램 논리에 따라 호출되는 함수 -> 콜백 함수
+        
+        function call(){} //->재사용
+        setInterval(call(), 3000); //3초마다 call()함수 호출
+        
+        1. 익명함수를 사용하는 이유 : 일회성의 의미.(재사용 X)
+            -> function(){}
+        2. callback 포괄적인 개념 : 뒤늦게 호출된다.
+            -> 프로그램 논리에 의해서 자동으로 호출되는 함수
+        2.1 1초 마다 재호출된다, 익명함수가
+        
+        setInterval() 예전엔 
+        서버한테 주기적으로 요청할 때 쓰였다고 함
+    */
+    //myTimer는 주소를 가지고 있음(setInterval객체의 주소)
+        let myTimer = window.setInterval(function(){
+        	let d = new Date(); //Date객체 생성
+        	let t = d.toLocaleTimeString();
+        	document.getElementById("time").innerHTML = t;
+        }, 1000); //document.getElementById("time") p태그
+        
+        function myTimerStop(){
+        	window.clearInterval(myTimer); // 시간 멈춘다고 함
+        }
+    </script>
+</head>
+<body>
+    <p id="time"></p>
+    <button onclick="myTimerStop()">stop time</button>
+</body>
+</html>
