@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+        console.log(x); // undefined
+        var x = 5;
+
+        console.log(x) 
+        
+        /*
+        console.log(a); // undefined
+        var a = 10;
+        
+        
+        내부적으로 해석되는 코드는********************************
+        var a;        // 선언이 먼저 올라감
+        console.log(a); // undefined
+        a = 10;
+        */
+        
+        //console.log(b); // ReferenceError 발생
+        //Uncaught ReferenceError: Cannot access 'b' before initialization
+        //let b = 20;
+    </script>
+</head>
+<body>
+        <p>scope</p>
+        <p id="demo1"></p>
+        <p id="demo2"></p>
+</body>
+<script type="text/javascript">
+        var gname = "world";  //전역(global 변수) .. 이 페이지 내에서 어디든지 사용가능
+        myFunction(); //호출
+        function myFunction(){
+            //함수 안에 변수 생성
+            //local variable
+            aaa = "아무개"; //사용금지 . .. 함수안에 써도 전역..이 되어버림 -> (사용x)
+            // 타입을 안쓰면 함수안에서 써도 전역변수가 되어버린다..
+            // 그래서 이렇게 쓰지 말자고..
+            
+            console.log("지역 aaa : " + aaa);
+            
+            var carname="pony";
+            document.getElementById("demo1").innerHTML = typeof(carname) + " " + carname + "<br>";
+            document.getElementById("demo2").innerHTML = typeof(gname) + " " + gname + "<br>";
+        }
+        console.log(aaa); // 아무개 찍힘
+</script>
+</html>
