@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+        window.onload = function(){
+        	/*클릭하면 이미지 순회*/
+        	let myPhotos = ["images/1.jpg", "images/2.jpg", "images/3.jpg", "images/4.jpg"];
+        
+        	let btnNext = document.getElementById("next");
+        	let btnPrv = document.getElementById("prv");
+        	let index = 0;
+
+        	btnNext.addEventListener("click", function(){
+        		if(index >= myPhotos.length){
+        			index = 0;
+        		}
+        		document.getElementById("imgs").src = myPhotos[index++];
+        	});
+        	
+        	btnPrv.addEventListener("click", function(){
+                	if(index == 0){
+                		index = myPhotos.length;
+                	}
+                document.getElementById("imgs").src = myPhotos[--index];        
+            });
+        }
+    </script>
+</head>
+<body>
+    <h3>DOM 슬라이드</h3>
+        <img src="images/1.jpg" alt="이미지" id="imgs" width="200" height="200">
+        <hr>
+        <a href="#" id="prv">이전</a>||<a href="#" id="next">다음</a>
+</body>
+</html>
