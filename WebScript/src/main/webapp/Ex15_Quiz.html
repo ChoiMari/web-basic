@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+        let checkFlag = "false"; // 전역 변수
+        
+        function checkForm(){
+        	let list = document.myform.list;
+        	console.log(list);
+        	// 각각의 태그가 checked = true
+        	if(checkFlag == "false"){
+                for(let index in list){
+                    console.log(list[index]);
+                    list[index].checked = true;
+                }
+                checkFlag = "true";
+                return "선택해제하기"
+        	}else{
+                for(let index in list){
+                    console.log(list[index]);
+                    list[index].checked = false;
+                }
+                checkFlag = "false";
+                return "전체선택하기"
+        	}
+            
+        }
+        
+        function unCheckForm(){
+            let list = document.myform.list;
+            console.log(list);
+            // 각각의 태그가 checked = true
+            for(let index in list){
+                console.log(list[index]);
+                list[index].checked = false;
+            }
+        }
+        
+    </script>
+</head>
+<body>
+    <form action="" name="myform">
+        좋아하는 과목은 : <br> 
+        <input type="checkbox" name="list" value="java">JAVA<br>
+        <input type="checkbox" name="list" value="oracle">ORACLE<br>
+        <input type="checkbox" name="list" value="html">HTML<br>
+        <input type="checkbox" name="list" value="css">CSS<br> 
+        <input type="checkbox" name="list" value="script">SCRIPT<br> 
+        <input type="button" value="[전체선택] " onclick="this.value = checkForm()"><br>
+        <!-- 리턴값을 받아서 value에 저장 -->
+        <br> <input type="button" value="[전체해제]"onclick="unCheckForm()"><br>
+    </form>
+</body>
+</html>
