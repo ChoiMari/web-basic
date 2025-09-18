@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style type="text/css">
+        .democlass {color: red;}
+    </style>
+</head>
+<body>
+    <div id="div">
+        <h1 class="democlass">Hello world_1</h1>
+        <h1 class="democlass">Hello world_2</h1>
+        <h1 class="democlass">Hello world_3</h1>
+    </div>
+
+</body>
+
+    <script type="text/javascript">
+        //document.getElementsByTagName("h1")[0].removeAttribute('class');
+        //h1태그를 다 찾아옴(배열)
+        //그 중 인덱스 0번째의 class 속성 제거
+        /*
+        let harray = document.getElementsByTagName("h1");
+        console.log(harray); // 배열
+        
+        for(let i = 0;i < harray.length; i++){
+        	console.log(harray.length);
+        	harray[i].removeAttribute('class');
+        }
+        */
+        let array = document.getElementsByTagName("h1");
+        for(let index in array){
+        	console.log(array[index]);
+        	console.log("index : " + index + ", length : " + array.length);
+        	document.getElementById("div").removeChild(array[index]);
+        }
+        /*
+        삭제 순서 0 -> 1 -> 2
+        Hello World_2 남아있음
+        [0][1][2]
+        [0] 삭제 하면 [1][2]가 [0][1]이됨
+        [1] 삭제 하면 [0]이 남음 그게  Hello World_2
+        
+        해결 방법
+        [2][1][0] -> [2]삭제
+        [1][0] -> [1]삭제
+        [0] -> [0] 삭제
+        [2] -> [1] -> [0]
+        */
+        
+        let arr = document.getElementsByTagName("h1");
+        let len = arr.length; // 3
+        for(let i = 0;i < len;i++){ // 3번 반복
+        	//remove()
+        	arr[arr.length -1].remove();
+        }
+        
+        const parent = document.getElementById('div');
+        const list = parent.getElementsByTagName('h1'); // 이 부모의 h1만
+        for (let i = list.length - 1; i >= 0; i--) {
+            console.log("i : " + i);
+            parent.removeChild(list[i]);
+        }
+    </script>
+</html>
