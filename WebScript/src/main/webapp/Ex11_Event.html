@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+        /*
+            https://www.w3schools.com/tags/ref_eventattributes.asp
+            https://www.w3schools.com/js/js_events.asp
+            
+            <필수로 알아둘 이벤트 - 기본>
+            	Event   Description
+            	onchange    An HTML element has been changed
+            	onclick The user clicks an HTML element
+            	onmouseover The user moves the mouse over an HTML element
+            	onmouseout  The user moves the mouse away from an HTML element
+            	onkeydown   The user pushes a keyboard key
+            	onload  The browser has finished loading the page
+            	
+            	POINT
+            	onload : body태그 안에 있는 모든 요소가 웹 브라우저 메모리에
+            	로딩되고 난 직후 해당 이벤트가 발생
+            	사건이 발생하면 어떤 함수를 실행할건데 이 함수는
+            	호출 되었을 때 모든 요소는 DOM객체로 존재함을 보장받음
+        */
+        function bodyLoad(){
+            console.log("loading...");
+            //함수에서는 body 안에 있는 모든 요소를 가지고 놀 수 있다.
+            const data = document.myform.money.value;
+            console.log(isNaN(data));// false 나 숫자야
+        }
+    
+        function focusFunc(){ //onfocus
+        	//포커스가 들어오면
+            document.getElementById("myinput").style.background = "gold";
+        	// 동적으로 스타일 적용
+        }
+        
+        function blurFunc(){ //onblur
+        	document.getElementById("myinput").style.background = "white";
+        	//동적인 스타일 적용
+        }
+        
+        function selectTag(){
+        	//값이 바뀔때 마다 실행(onchange)
+        	const value = document.myform.sel.value; //-> id로 접근을 권장
+            alert(value);
+        }
+        
+        // 자바의 this : 객체 자신을 가리킴
+        
+        // 자바스크립트의 this (중요!!)
+        // -> 요소 자신
+        function changeColor(obj){//onmouseover 마우스를 올릴때 실행
+        	console.log(obj); // 요소 자신
+        	obj.style.backgroundColor = "gold";
+        }
+        
+        function changeColor2(obj){
+        	console.log(obj);
+        	obj.style.backgroundColor = "white";
+        }
+        
+    </script>
+</head>
+<body onload="bodyLoad()">
+        <form action="#" name="myform">
+            <input type="text" id="myinput" name="myinput" onfocus="focusFunc()"  onblur="blurFunc()">
+            <br>
+            <select name="sel" onchange="selectTag()">
+                <option value="A">AA</option>
+                <option value="B">BB</option>
+                <option value="C">CC</option>
+                <option value="D">DD</option>
+            </select>
+            <br>
+            <input type="text" onmouseover="changeColor(this)" onmouseout="changeColor2(this)">
+            <!-- 여기서 쓰인 this : input태그 요소 자신 -->
+            <input type="text"><br>
+            <input type="text" value="1000" name="money">
+        </form> 
+</body>
+</html>
