@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+    <div id="div">
+        행의수 : <input type="text" id="txtrow" name="txtrow" value="2"><br>
+        열의수 : <input type="text" id="txtcolumn" name="txtcolumn" value="2"><br>
+        <input type="button" id="b1"  value="동적테이블 생성" >
+        <input type="button" id="b2"  value="동적테이블 제거" >
+        
+    </div>
+    
+    <script type="text/javascript">
+        	let btnb1 =document.getElementById('b1');
+        	let row = document.getElementById("txtrow").value;
+        	let col = document.getElementById("txtcolumn").value;
+        	
+            window.onload = function(){  //DOM 객체 생성 이후에 보장                 
+            	btnb1.onclick = function(){  //객체.이벤트명 = 콜백함수(익명함수)
+            		let table = document.createElement('table');
+            	    let tr = document.createElement('tr');
+            	    for(let i =0;i < row;i++){
+            	    	let td = document.createElement('th');
+            	    }
+                 }
+            }
+    </script>
+</body>
+</html>
