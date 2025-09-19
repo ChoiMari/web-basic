@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+        /*
+            1. 배열 : [] 사용, const arr = [] 빈배열만들고
+                push(), pop()사용
+            2. JSON : {} 사용, const obj = {}로 선언
+                obj.속성명 
+                obj[키값]을 사용하면 value값을 얻을 수 있음
+            
+            xml과 json은 이기종간의 데이터 교환이 목적
+            
+            날씨정보제공, 지하철 정보제공, 공공 데이터 제공
+            -> open API라고 함(유료/무료)
+            -> xls, csv, xml, json
+            
+            API를 통해서 받아온 JSON데이터에서 원하는 데이터만 추출해서
+            -> 화면에 렌더링
+        */
+        let students = []; 
+        students.push({이름: "홍길동", 국어: 80, 영어: 60}); // 객체배열 [{},{},{}]
+        students.push({이름: "아무개", 국어: 100, 영어: 60});
+        students.push({이름: "이순신", 국어: 70, 영어: 50});
+        //배열에 객체를 저장
+        
+        for(let index in students){
+        	// 배열 객체에 함수 추가
+        	//배열index번에 getSum이라는 함수를 추가함
+        	students[index].getSum = function(){return this.국어 + this.영어};
+        	students[index].getAvg = function(){return this.getSum()/2};
+        	//[{이름: "홍길동", 국어: 80, 영어: 60, getsum:function(){return this.국어 + this.영어} ...},{},{}]
+        }
+        console.log(students);
+        //복잡한 데이터를 접근해서 읽어낼 수 있어야 한다.
+        for(let index in students){
+        	console.log(students[index].이름);
+        	console.log(students[index].getSum());
+        	console.log(students[index].getAvg());
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
