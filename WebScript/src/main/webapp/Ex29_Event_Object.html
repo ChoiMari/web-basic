@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+    /*
+    JAVA 예외처리
+    
+    try{
+         0/0 >   예외가 발생 >> [ 예외에 맞는 객체가 자동 생성 ] new Div.. >> 객체 예외 문제 메시지 담기고
+    }catch(Exeception e) { //모든 예외 부모인 e변수가 객체의 주소를 받는다
+        
+        //e.getMessage
+        
+    }
+    
+    ...............
+    자바스크립트 : 이벤트 객체가 있다
+    사건이 발생하면 이벤트객체가 자동으로 생성
+    이벤트 객체에는 발생, 주체, 영향, 등 정보가 들어있다
+    자동 생성된 객체를 받아서 사용하면 됨(이벤트 객체의 주소를 받을 수 있음)
+    이벤트 객체에 함수와 속성이 제공됨
+    
+    javaScript > 사건이 발생 (click , mouseover , mouseout) > 내부적으로 >[ event 정보를 담고 있는 객체 생성 ]
+    Event 객체 > 사건의 진실(발생 ,주체 , 영향 , 정보) 생성된 객체를 받아서 사용만 하면 되요
+    
+    window.event.메서드 제공
+    window.event.속성 제공
+    
+    -> KEY EVENT : Event  객체가 제공하는 함수와 속성을 이용해서 .... 제어하자
+    */
+        window.onload = function(){
+        	let btn = document.getElementById("mybtn");
+        	
+        	btn.onclick = function(e){ // 콜백함수 - 이벤트가 발생하면 실행 하겠다
+        		//e라는 파라미터는 무엇을 받는가?
+        			// 클릭이라는 이벤트가 발생했을 때, 생성된 Event객체의
+        			// 주소를 받는다.
+        			// 클릭이라는 사건이 발생하면 이벤트 객체 자동생성되고
+        			//파라미터 e에 이벤트 객체의 주소가 담겨서 호출
+        	console.log(e.type); // 발생한 이벤트의 종류를 확인 가능
+        	//click
+        	
+        	console.log(e.target); // 가지고 있는 정보 : <span>눌러봐</span>태그를 잡음
+        	// 이벤트가 발생한 바로 그 요소를 직접 가리킴
+        	
+        	console.log(e.currentTarget); //이벤트 [리스너]를 가지고 있는 요소
+        	// 실제로 이벤트는 버튼을 가지고 있음(버튼에 이벤트를 걸었으니까)
+        	// 가지고 있는 정보 : <button id="mybtn"><span>눌러봐</span></button>
+        	
+        	//좌표값
+        	console.log(e.x);
+        	console.log(e.y);
+        	//하나의 버튼에 여러개의 이벤트를 걸 수 있음
+        	}
+        	
+        	let btn2 = document.getElementById("mybtn2");
+        	let handler = function(event){
+        		//handler변수 : 익명함수의 주소를 가지고 있음
+        		switch(event.type){ // 발생한 이벤트의 종류에 따라서 적용
+            		case "click" : alert("클릭");
+            		  break;
+                    case "mouseover" : event.target.style.backgroundColor="red";
+                    //이벤트가 발생한 요소의 스타일 속성 적용
+                      break;
+                    case "mouseout" : event.target.style.backgroundColor="";
+                      break;
+        		}
+        	}
+        	
+        	// btn2에 여러가지 이벤트 적용
+        	// 여러가지 이벤트를 1개의 함수로 처리
+        	btn2.onclick = handler; 
+        	btn2.onmouseover = handler;
+        	btn2.onmouseout = handler;
+        	
+        	//잘 짜여진 코드는 이벤트 객체와 배열과 this를 활용
+        	
+        	/*
+        	만일, 이벤트 객체를 활용하지 않았다면...
+            	btn2.onclick = function(){...}; 
+                btn2.onmouseover = function(){...}; 
+                btn2.onmouseout = function(){...}; 
+        	*/
+        }
+    </script>
+</head>
+<body>
+    <button id="mybtn"><span>눌러봐</span></button>
+    <br />
+    <button id="mybtn2">눌러봐2</button>
+</body>
+</html>
