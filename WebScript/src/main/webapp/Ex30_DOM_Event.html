@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style>
+    #myDiv1, #myDiv2 {
+        background-color: coral;
+        padding: 50px;
+    }
+    
+    #myP1, #myP2 {
+        background-color: white;
+        font-size: 20px;
+        border: 1px solid;
+        padding: 20px;
+    }
+</style>
+</head>
+<body>
+        <h3>addEventListener</h3>
+        
+        <div id="myDiv1">
+            <h2>Bubbling</h2>
+            <p id="myP1">Click me</p>
+        </div>
+        <br>
+        <div id="myDiv2">
+            <h2>Capturing</h2>
+            <p id="myP2">Click me</p>
+        </div>
+        <!-- 
+            capture : true
+            default 값은 false 
+         -->
+</body>
+    <script type="text/javascript">
+        // 클릭이벤트를 검
+        document.getElementById("myP1").addEventListener("click",function(){
+            alert("click white element!");
+        },false); //default false 라 이야기는 기본 buble적용하겠다  //이벤트 전파 
+        //default false : 버블링을 쓰겠다라는 뜻(버블링 놔두겠다)
+        //false는 명시해도 안해도 기본값 false(버블링)
+        // 안쪽을 클릭하면 바깥쪽 이벤트에도 전파되어서 2개 다 실행됨
+        // 면접에 물어본다고 이걸 막는방법 잘 알아두기
+        // true를 쓰면 캡쳐링하겠다는 뜻이라고
+        // 캡처링은 바깥 이벤트가 먼저 실행됨
+        // 버블링은 안쪽실행 바깥실행
+        // 캡처링은 바깥실행 안쪽실행
+        
+        document.getElementById("myDiv1").addEventListener("click",function(){
+            alert("click orange element!");
+        },false);
+        
+        //캡처링
+        document.getElementById("myP2").addEventListener("click",function(){
+            alert("click white element!");
+        },true);  //capture 활성화
+        
+        document.getElementById("myDiv2").addEventListener("click",function(){
+            alert("click orange element!");
+        },true); //capture 활성화
+    </script>
+</html>
