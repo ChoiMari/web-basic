@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+        let myObj = {name: "John", age:30, city:"seoul"};
+        console.log(myObj); // Object
+        //[객체 데이터]를 서버로 전송
+        // 문자열 데이터로 변환해서 보냄
+        // login.jsp?name=길동&city=seoul
+        //중요 객체를 json형식의 데이터 문자열로 변환하기
+        // JSON.Stringify() : 객체데이터를 문자열 데이터로 변환가능한 함수
+        
+        let stringObj = JSON.stringify(myObj);
+        // 아규먼트에 객체데이터를 넣어주면 문자열로 바뀐다
+        //JSON형식의 문자열 '{"name:"John", "age":30, "city":"seoul"}'로 변환됨
+        
+        //확인 typeof사용
+        console.log(stringObj); //{"name":"John","age":30,"city":"seoul"}
+        console.log(typeof(stringObj)); // string
+        
+        //이번엔 반대로
+        //JSON 형식의 문자열 데이터를 JSON객체 데이터로 변환
+        // 조건, 구조가 JSON형태여야함
+        let stringStr = '{"name:"길동", "age":30, "city":"seoul"}';
+        console.log(stringStr); //{name: "길동", age:30, city:"seoul"};
+        console.log(typeof(stringStr)); // string
+        
+        // 문자 데이터를 JSON객체데이터로 변환함
+        let myJson = JSON.parse(stringStr);
+        console.log(myJson);
+        console.log(myJson.name); // 객체.으로 속성에 접근 가능
+        console.log(myJson[name]); //객체["속성명"] 하면 value를 리턴받음
+    
+        /*
+        확장자 
+        .htm 또는 .html
+        css는 .cs
+        .js
+        
+        .json
+        형식 -> application/json
+        
+        .xml 
+        */
+        
+        let myCars;
+        
+        myCars = {"name":"john" , "age":30 , "cars": [
+                    {"name":"Ford","model":["Mustang","Focus"]},
+                    {"name":"BMW" ,"model":["520","x5","x6"]},
+                    {"name":"Fiat","model":["500","panda"]}
+                        ]
+        };
+        
+        //신입한테 시킴
+        //JSON, XML 제공할 테니까 화면에 뿌려라..
+        console.log(myCars);
+        console.log(myCars.cars); 
+        //-> 객체 배열을 리턴
+        /*
+        [
+                    {"name":"Ford","model":["Mustang","Focus"]},
+                    {"name":"BMW" ,"model":["520","x5","x6"]},
+                    {"name":"Fiat","model":["500","panda"]}
+        ]
+        */
+        
+        //john이 가지고 있는 차량의 이름, 모델명 전부 출력하기
+        
+        for(let index in myCars.cars){
+        	document.write("차량이름 : " + myCars.cars[index].name);
+        	console.log("모델명 : " + myCars.cars[index].model); 
+        	/* myCars.cars[index].model 반환 -> 배열
+        	["Mustang","Focus"]
+        	["520","x5","x6"]
+        	["500","panda"]
+        	*/
+        	for(let i in myCars.cars[index].model){
+        		document.write("차량 모델 " + myCars.cars[index].model[i]);
+        	}
+        	document.write("<hr />");
+        }
+        
+    </script>
+</head>
+<body>
+
+</body>
+</html>
