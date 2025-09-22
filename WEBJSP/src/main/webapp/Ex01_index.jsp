@@ -129,8 +129,23 @@ JSP의 구성요소
 2. 스크립트 요소
 2.1 스크립트 릿 <% 안에 자바코드 사용할 수 있는 영역
 2.2 표현식(출력하는 방법) , 출력대상은 클라이언트의 브라우저.
+    -> <%= response.write 서버쪽 내용을 클라이언트에 쓰겠다
+2.3 선언부(공통자원) : 공통함수를 모아서 특정 영역에 넣을 수 있다
+    -> <%!
 
 */
+%>
+
+<%
+    String name = "hello world";
+%>
+<%!
+    //이 페이지에서 사용하는 공통함수를 모아놓는 영역
+    //page를 떠나면 사용할 수 없음(page scope)
+    //이게 클래스 안에 들어있는걸로 본다고 함
+    public int add(int i, int j){
+        return i + j;
+    }
 %>
 <!DOCTYPE html>
 <html>
@@ -139,6 +154,16 @@ JSP의 구성요소
 <title>Insert title here</title>
 </head>
 <body>
-
+    <h3>JSP 실행하기</h3>
+    날짜 : <%= date %>
+    <hr>
+    이름 : <%= name %>
+    <hr>
+    함수 : <%= add(100, 200) %>
+    <%
+       int result = add(1,2);
+    %>
+    <hr>
+    결과 <%= result %>
 </body>
 </html>
