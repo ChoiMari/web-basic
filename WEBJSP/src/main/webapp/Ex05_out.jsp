@@ -19,7 +19,7 @@
     <%
         boolean b = true;
         if(10 > 5){
-    %>
+    %> 
         if(true)<font color="red"><%=b%></font>
     <%      
         }else{
