@@ -16,4 +16,21 @@
     <param-name>filePath</param-name>
     <param-value>C:\\Web\\upload</param-value>
   </context-param>
+  <!-- 전역적인 예외 처리
+  1. 상태코드(500 서버오류, 404 요청 페이지 없음, 403 권한 없는 경우 등)별로 처리
+  2. 상세하게(예외 처리 - NullPoint, IndexOut, ...) -> 이 방법은 실제로 사용하지 않음(귀찮기 때문에)
+  
+  개발 시에는 설정하지 않음. 실 배포할 때 예외 페이지 처리함
+   -->
+   <!-- 해당 코드는 실 배포 시에 처리합니다(예외 페이지 전역적으로 설정)
+    web.xml이 스프링에서는 애플리케이션.프로퍼티스 또는 yml파일로 생각하면 된다고 함 
+  <error-page>
+    <error-code>500</error-code>
+    <location>/error/Error500.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error/Error404.jsp</location>
+  </error-page>
+  -->
 </web-app>
