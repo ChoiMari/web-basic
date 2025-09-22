@@ -19,6 +19,7 @@ local.properties
 .classpath
 
 Servers/
+build/classes/
 
 # External tool builders
 .externalToolBuilders/
