@@ -2,13 +2,18 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
   <display-name>WEBJSP</display-name>
   <welcome-file-list>
+    <!-- 페이지로 접속했을 때 기본 페이지 설정 -->
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.xhtml</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.xhtml</welcome-file>
   </welcome-file-list>
+  <context-param><!-- 공유 파라미터(전역 자원) - 모든 웹페이지에서 사용가능한 파라미터 설정
+  context-param 전역자원의 의미를 가짐 application.getInitParameter("email");으로 읽을 수 있음 -->
+    <description>이 설명은 개발자의 마음대로 작성</description>
+    <param-name>email</param-name>
+    <param-value>kosa@kosa.or.kr</param-value>
+  </context-param>
+  <context-param>
+    <description>기본 업로드 파일 경로</description>
+    <param-name>filePath</param-name>
+    <param-value>C:\\Web\\upload</param-value>
+  </context-param>
 </web-app>
