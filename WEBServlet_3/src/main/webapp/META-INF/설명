@@ -1,0 +1,26 @@
+1. Model2 기반의 MVC 패턴 적용 웹 프로젝트
+
+Model1 >> 요청을 JSP 받아서 처리  :  http://www.it.or.kr/login.jsp  지금 이런 방식은 (x) ...
+
+Model2 >> 요청을 servlet 받아서 처리 http://www.it.or.kr/login.do   > *.do > 특정 서블릿 동작 > url-pettern
++ MVC
+
+Model : JAVA 클래스 > DTO , DAO(JDBC)
+View  : html or jsp(EL & JSTL)
+Controller : servlet(웹용 자바파일)
+---------------------------------------------------
+
+JSP 없던 시절 >> Servlet 모든 것 >> UI 담당
+
+---------------------------------------------------
+DB 작업
+create table memo(
+    id varchar2(20) not null,
+    email varchar2(20) not null,
+    content varchar2(100)
+);
+desc memo;
+
+1. 드라이버 :ojdbc6.jar
+
+
