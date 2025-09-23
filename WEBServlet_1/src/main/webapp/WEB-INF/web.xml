@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
+  <display-name>WEBServlet_1</display-name>
+  <welcome-file-list>
+    <!-- 디폴트 페이지 설정 -->
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <servlet-name>simplecontroller</servlet-name>
+    <servlet-class>
+    <!-- 사용할 클래스 경로(패키지포함) -->
+        com.SimpleController
+    </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>simplecontroller</servlet-name><!-- 위의 서블릿-네임과 같아야함 -->
+    <url-pattern>/simple</url-pattern>
+  </servlet-mapping>
+  <!-- http://ip:포트번호/컨텍스트루트/simple 요청이 오면 잡음
+    com.SimpleController.java 컴파일 실행함(서버 메모리에 없으면)
+    그런데 요청의 메서드가 동기방식에서는 get, post 2가지
+    get방식으로 들어오면 doGet() 자동 호출, post방식으로 요청이 들어오면 doPost()자동 호출됨
+   
+   서버 시작될 때 읽고
+   요청이 들어오면 이 매핑을 봄
+   /simple url-패턴에 매핑된게 있으면  
+   같은 이름을 가진 서블릿네임의 서블릿 클래스에 있는 파일을 실행함
+   -->
+</web-app>
