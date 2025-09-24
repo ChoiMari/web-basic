@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import kr.or.kosa.dto.EmpDto;
 import kr.or.kosa.service.EmpService;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -108,7 +109,7 @@ public class FrontController extends HttpServlet {
     		String ename = request.getParameter("ename");
     		String job = request.getParameter("job");
     		String mgr = request.getParameter("mgr");
-    		//String hiredate = request.getParameter("hiredate");
+    		String hiredate = request.getParameter("hiredate");
     		String sal = request.getParameter("sal");
     		String comm = request.getParameter("comm");
     		String deptno = request.getParameter("deptno");
@@ -119,7 +120,7 @@ public class FrontController extends HttpServlet {
     				.ename(ename)
     				.job(job)
     				.mgr(Integer.parseInt(mgr))
-    				.hiredate(LocalDateTime.now()) 
+    				.hiredate(LocalDate.parse(hiredate)) 
     				.sal(Integer.parseInt(sal))
     				.comm(Integer.parseInt(comm))
     				.deptno(Integer.parseInt(deptno))
@@ -174,14 +175,14 @@ public class FrontController extends HttpServlet {
     		String ename = request.getParameter("ename");
     		String job = request.getParameter("job");
     		String sal = request.getParameter("sal");
+    		String hiredate = request.getParameter("hiredate");
     		String empno = request.getParameter("empno");
-
     		//TODO : 예외처리...    	
     		EmpDto empDto = EmpDto.builder()
     				.empno(Integer.parseInt(empno))
     				.job(job)
     				.ename(ename)
-    				.hiredate(LocalDateTime.now()) 
+    				.hiredate(LocalDate.parse(hiredate)) 
     				.sal(Integer.parseInt(sal))
     				.build();
     		

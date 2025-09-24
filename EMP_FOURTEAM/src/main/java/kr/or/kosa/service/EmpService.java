@@ -49,7 +49,7 @@ public class EmpService {
 		if(empList != null) {
 			System.out.println("[readEmpAllList] 정상수행");
 			//확인해봄 - 디버깅위해
-			System.out.println("[readEmpAllList 결과] : " + empList.toString());
+			//System.out.println("[readEmpAllList 결과] : " + empList.toString());
 		}else {
 			System.out.println("실패 - 테이블에 데이터 아예 없거나..");
 		}

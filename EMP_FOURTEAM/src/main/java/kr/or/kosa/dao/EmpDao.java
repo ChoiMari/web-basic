@@ -2,12 +2,17 @@ package kr.or.kosa.dao;
 
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import kr.or.kosa.dto.EmpDeptDto;
 import kr.or.kosa.dto.EmpDto;
 import kr.or.kosa.utils.ConnectionPoolHelper;
 
@@ -31,7 +36,7 @@ public class EmpDao {
 					.ename(rs.getString("ename"))
 					.job(rs.getString("job"))
 					.mgr(rs.getInt("mgr"))
-					.hiredate(rs.getTimestamp("hiredate").toLocalDateTime())
+					.hiredate(rs.getDate("hiredate").toLocalDate())
 					.sal(rs.getInt("sal"))
 					.comm(rs.getInt("comm"))
 					.deptno(rs.getInt("deptno")).build());
@@ -57,7 +62,7 @@ public class EmpDao {
 		EmpDto emp = null;
 		try {
 			conn = ConnectionPoolHelper.getConnection(); 
-			String sql = "select empno, ename, job, mgr, hiredate, sal, comm, deptno from emp"
+			String sql = "select empno, ename, job, nvl(mgr, 0) as mgr, hiredate, sal, nvl(comm, 0) as comm, deptno from emp"
 					+ " where empno = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, empno);
@@ -69,7 +74,7 @@ public class EmpDao {
 						.ename(rs.getString("ename"))
 						.job(rs.getString("job"))
 						.mgr(rs.getInt("mgr"))
-						.hiredate(rs.getTimestamp("hiredate").toLocalDateTime())
+						.hiredate(rs.getDate("hiredate").toLocalDate())
 						.sal(rs.getInt("sal"))
 						.comm(rs.getInt("comm"))
 						.deptno(rs.getInt("deptno")).build();
@@ -102,7 +107,7 @@ public class EmpDao {
 			pstmt.setString(2, dto.getEname());
 			pstmt.setString(3, dto.getJob());
 			pstmt.setInt(4, dto.getMgr());
-			pstmt.setTimestamp(5, Timestamp.valueOf(dto.getHiredate()));
+			pstmt.setDate(5, Date.valueOf(dto.getHiredate()));
 			pstmt.setInt(6, dto.getSal());
 			pstmt.setInt(7, dto.getComm());
 			pstmt.setInt(8, dto.getDeptno());
@@ -135,7 +140,7 @@ public class EmpDao {
 			pstmt.setString(1, dto.getEname());
 			pstmt.setString(2, dto.getJob());
 			pstmt.setInt(3, dto.getSal());
-			pstmt.setTimestamp(4, Timestamp.valueOf(dto.getHiredate()));
+			pstmt.setDate(4, Date.valueOf(dto.getHiredate()));
 			pstmt.setInt(5, dto.getEmpno());
 			resultRow = pstmt.executeUpdate();
 		}catch(Exception e) {
@@ -177,46 +182,90 @@ public class EmpDao {
 		return resultRow;
 	}
 	
-//검색
-//	public List<EmpDeptDto> searchEmp(String keyword){
-//		Connection conn = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		Map<String, Object> list = new HashMap<>();
-//		try {
-//			conn = ConnectionPoolHelper.getConnection(); 
-//			
-//			//rs.getString("e.ename") 이렇게 쓰면 에러난다..
-//			// alias를 써야함!!!
-//			String sql = "select e.ename as ename, e.deptno as deptno, d.dname as dname "
-//					+ "from emp e join dept d "
-//					+ "on e.deptno = d.deptno "
-//					+ "where e.ename like ?"; //-> 분석 순서상 select문에 쓴 alias는 where조건쓸때는 없음
-//			pstmt = conn.prepareStatement(sql); // DB서버의 쉐어드 풀에 sql 준비시킴
-//			pstmt.setString(1, "%" + keyword + "%"); // 파라미터 보냄
-//			rs = pstmt.executeQuery(); // 쿼리 실행
-//			
-//			if(rs.next()) {
-//				do {
-//					list.put(Emp.builder()
-//							.ename(rs.getString("ename")) //alias로 가져옴
-//							.deptno(rs.getInt("deptno"))
-//							.build(), 
-//							Dept.builder()
-//							.dname(rs.getString("dname"))
-//							.build());
-//				}while(rs.next());
-//			}else {
-//				System.out.println("조회된 결과가 없습니다.");
-//			}
-//		}catch(Exception e) {
-//			System.out.println("[select DB 예외] " + e.getMessage());
-//		}finally {
-//			ConnectionPoolHelper.close(rs);
-//			ConnectionPoolHelper.close(pstmt);
-//			ConnectionPoolHelper.close(conn);
-//		}
-//		
-//		return list;
-//	}
+    //검색
+	public List<EmpDeptDto> searchEmpByEname(String keyword){ 
+		// 이름으로 사원 검색하기(동명이인이 가능함)
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<EmpDeptDto> list = new ArrayList<>();
+		
+		try {
+			conn = ConnectionPoolHelper.getConnection(); 
+			
+			//rs.getString("e.ename") 이렇게 쓰면 에러난다..
+			// alias를 써야함!!!
+			String sql = "select e.empno as empno, e.ename as ename, e.deptno as deptno, d.dname as dname "
+					+ "from emp e join dept d "
+					+ "on e.deptno = d.deptno "
+					+ "where e.ename like ?"; //-> 분석 순서상 select문에 쓴 alias는 where조건쓸때는 없음
+			pstmt = conn.prepareStatement(sql); // DB서버의 쉐어드 풀에 sql 준비시킴
+			pstmt.setString(1, "%" + keyword + "%"); // 파라미터 보냄
+			rs = pstmt.executeQuery(); // 쿼리 실행
+			
+			if(rs.next()) {
+				do {
+					list.add(EmpDeptDto.builder()
+							.empno(rs.getInt("empno"))
+							.ename(rs.getString("ename"))
+							.deptno(rs.getInt("deptno"))
+							.dname(rs.getString("dname"))
+							.build());
+				}while(rs.next());
+			}else {
+				System.out.println("조회된 결과가 없습니다.");
+			}
+		}catch(Exception e) {
+			System.out.println("[select DB 예외] " + e.getMessage());
+		}finally {
+			ConnectionPoolHelper.close(rs);
+			ConnectionPoolHelper.close(pstmt);
+			ConnectionPoolHelper.close(conn);
+		}
+		
+		return list;
+	}
+	
+    //검색 - 리턴타입 Map사용해봄 
+	//key : 컬럼이름, value : 데이터
+	public Map<String, Object> searchEmpByEnameMap(String keyword){ 
+		// 이름으로 사원 검색하기(동명이인이 가능함)
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Map<String, Object> empDept= new HashMap<>();
+		
+		try {
+			conn = ConnectionPoolHelper.getConnection(); 
+			
+			//rs.getString("e.ename") 이렇게 쓰면 에러난다..
+			// alias를 써야함!!!
+			String sql = "select e.empno as empno, e.ename as ename, e.deptno as deptno, d.dname as dname "
+					+ "from emp e join dept d "
+					+ "on e.deptno = d.deptno "
+					+ "where e.ename like ?"; //-> 분석 순서상 select문에 쓴 alias는 where조건쓸때는 없음
+			pstmt = conn.prepareStatement(sql); // DB서버의 쉐어드 풀에 sql 준비시킴
+			pstmt.setString(1, "%" + keyword + "%"); // 파라미터 보냄
+			rs = pstmt.executeQuery(); // 쿼리 실행
+			
+			if(rs.next()) {
+				do {
+					empDept.put("empno", rs.getInt("empno"));
+					empDept.put("ename", rs.getString("ename"));
+					empDept.put("deptno", rs.getInt("deptno"));
+					empDept.put("dname", rs.getString("dname"));
+				}while(rs.next());
+			}else {
+				System.out.println("조회된 결과가 없습니다.");
+			}
+		}catch(Exception e) {
+			System.out.println("[select DB 예외] " + e.getMessage());
+		}finally {
+			ConnectionPoolHelper.close(rs);
+			ConnectionPoolHelper.close(pstmt);
+			ConnectionPoolHelper.close(conn);
+		}
+		
+		return empDept;
+	}
 }

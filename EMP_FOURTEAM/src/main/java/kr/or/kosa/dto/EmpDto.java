@@ -1,5 +1,6 @@
 package kr.or.kosa.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ public class EmpDto {
 	 */
 	private Integer mgr;
 	
-	private LocalDateTime hiredate;
+	private LocalDate hiredate;
 	private Integer sal;
 	
 	/**
