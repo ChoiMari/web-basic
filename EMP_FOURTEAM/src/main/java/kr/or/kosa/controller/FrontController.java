@@ -121,7 +121,7 @@ public class FrontController extends HttpServlet {
     				.mgr(Integer.parseInt(mgr))
     				.hiredate(LocalDateTime.now()) 
     				.sal(Integer.parseInt(sal))
-    				.comm(Integer.parseInt(sal))
+    				.comm(Integer.parseInt(comm))
     				.deptno(Integer.parseInt(deptno))
     				.build();
     		
