@@ -442,7 +442,7 @@
                                 기본급
                             </span>
                             <span class="info-value salary-highlight">
-                                <fmt:formatNumber value="${empdetail.sal}" pattern="#,###"/>원
+                                <fmt:formatNumber value="${empdetail.sal}" pattern="#,###"/>$
                             </span>
                         </div>
                         <div class="info-item">
@@ -453,7 +453,7 @@
                             <span class="info-value">
                                 <c:choose>
                                     <c:when test="${empdetail.comm != null and empdetail.comm > 0}">
-                                        <fmt:formatNumber value="${empdetail.comm}" pattern="#,###"/>원
+                                        <fmt:formatNumber value="${empdetail.comm}" pattern="#,###"/>$
                                     </c:when>
                                     <c:otherwise>
                                         없음
@@ -468,7 +468,7 @@
                             </span>
                             <span class="info-value salary-highlight">
                                 <c:set var="totalSal" value="${empdetail.sal + (empdetail.comm != null ? empdetail.comm : 0)}"/>
-                                <fmt:formatNumber value="${totalSal}" pattern="#,###"/>원
+                                <fmt:formatNumber value="${totalSal}" pattern="#,###"/>$
                             </span>
                         </div>
                     </div>
