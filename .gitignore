@@ -15,10 +15,32 @@ local.properties
 .recommenders
 
 .project
-
 .classpath
 
+# Java build files
+/build/
+/out/
+/target/
+*.class
+
 Servers/
+
+# Java/JSP 로그 파일
+*.log
+
+# Maven Wrapper
+.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
+
+# Gradle Wrapper
+.gradle/
+build/
+
+# 배포 산출물 (war, ear)
+*.war
+*.ear
+
+
 
 # External tool builders
 .externalToolBuilders/
