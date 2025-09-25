@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <!-- 제이쿼리를 먼저넣어야함 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    /*
+    Ajax
+    1. XMLHttpRequest 객체 직접사용 ( 순수한 Javascript를 활용 ) > 비동기 처리나 흐름 이해 ...
+    1.1 https://www.w3schools.com/js/js_ajax_intro.asp 내용을 기반으로 ....
+    
+    2. fetch API ( XMLHttpRequest 객체 없이도 비동기 처리 )
+    
+    3. Jquery 에서는 내부적으로 XMLHttpRequest객체를 활용한 다양한 함수 제공
+    3.1 $.post(URL,data,callback)   > 함수 내부에 XMLHttpRequest  구현되어 있다
+
+    JavaScript Promise Object
+    async and await
+    fetch API 이해하기 위해서는 Promise Object 이해가 필요하다    
+ */
+     /*
+        $(document).ready(function(){
+        	
+        });
+     */
+     $(function(){ //$(document).ready(function(){});와 같음
+    	 $('#btncopy').click(function(){
+    		//여기는 버튼 클릭 시 실행되는 콜백 함수 내부.
+    		$('#txtcopyuserid').val($('#txtuserid').val());
+    		//id가 txtuserid인 요소의 값을 읽어서 
+    		//id가 txtcopyuserid인 요소의 값을 씀
+    	 });
+    	$('#select_hobby').change(function(){
+    		const text = $(':selected').text();
+    		//선택되어진요소의 값을 읽어오겠다
+    		console.log(text);
+    		const text2 = $('#select_hobby option:selected').text();
+    		console.log(text2);
+    		
+    		const value = $('#select_hobby').val();
+    		console.log(value);
+    	});
+    	
+    	$('#txtpwd2').keyup(function(){
+    		//키보드를 눌렀다 때었을 때 발생하는 이벤트(keyup)
+    		if($('#txtpwd').val() != $('#txtpwd2').val()){
+    			$('#message').html('<h3>암호가 일치하지 않아요</h3>');
+    		}else{
+    			$('#message').html('<h3>암호가 일치합니다</h3>');
+    		}
+    	});
+     });    
+    </script>
+    
+</head>
+<body>
+    <p>Jquery hover(mouseover , mouseleave)</p>
+
+    ID:
+    <input type="text" id="txtuserid">
+    <hr>
+    <input type="button" id="btncopy" value="copy">
+    <hr>
+    Copy ID:
+    <input type="text" id="txtcopyuserid">
+
+    <hr>
+    <select id="select_hobby">
+        <option value="JAVA">java</option>
+        <option value="SCRIPT">script</option>
+        <option>jdbc</option>
+    </select>
+    <br>
+    <input type="text" id="txtselect">
+    <hr>
+    <table style="border: 1px solid red;">
+        <tr>
+            <td>암호</td>
+            <td><input type="text" id="txtpwd" size="20"
+                maxlength="5"></td>
+        </tr>
+        <tr>
+            <td>암호확인</td>
+            <td><input type="text" id="txtpwd2" size="20"
+                maxlength="5"></td>
+        </tr>
+    </table>
+    <div id="message" style="color: red"></div>
+</body>
+</html>

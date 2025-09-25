@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+    	//jquery 이벤트 동적처리
+    	// 제이쿼리는 json을 아는 사람한테 유리하다.
+    	// 제이쿼리가 가지고 있는 대부분의 함수는
+    	// 파라미터로 제이슨 객체를 옵션으로 받는다.
+    	
+    	//2.x.x버전에서는 bind(), unbind()가 있었음
+    	//3.x.x 버전에서는 on(), off()로 바뀜
+    	
+    	//$('p').on(function(){}); //모든 p태그에 함수를 추가
+    	
+    	$('p').on( // -> 장점 : 필요없는건 제거할 수 있다
+    	{
+    		//JSON : 자바스크립트 객체 표기법
+    		// 이벤트이름 : 함수
+    		mouseenter : function(){$(this).css('background-color', 'red')}, 
+    		mouseleave : function(){$(this).css('background-color', 'green')},
+    		click : function(){$(this).css('background-color', 'blue')}
+    	}
+    	);
+    	
+    	$('button').click(function(){
+    		$('p').off('click'); //p태그의 모든 클릭이벤트를 끔(제거)
+    	});
+    	
+    })
+    </script>
+</head>
+<body>
+    <p>함수를 사용해서 다중 이벤트 처리하기</p>
+    <hr>
+    <button>이벤트 제거</button>
+</body>
+</html>

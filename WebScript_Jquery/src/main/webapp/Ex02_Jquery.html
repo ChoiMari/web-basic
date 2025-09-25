@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        // window.onload = function(){//body안에 있는 요소 가지고 놀기} 
+        // 이걸 제이쿼리로
+        $(document).ready(function(){ //window.onload= function(){}와 같음
+        	//body안에 있는 요소 가지고 놀기
+        	$('#btn').click(function(){
+        		$(this).hide(); //hide()는 style="display: none;";
+        		//요소를 숨김
+        	});
+        	//$('셀렉터이름').이벤트
+        	//this는 이벤트를 가지고 있는 주체
+        });
+    </script>
+</head>
+<body>
+    <input type="button" id="btn" value="버튼" />
+</body>
+</html>
