@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+    /*
+    1. XMLHttpRequest 객체(안에 함수와 이벤트있음) 얻기
+    2. onreadystatechange 이벤트 핸들러 구현 (함수)
+          -> 레지스테이트값이 바뀌면 감지하고 실행하는 이벤트 핸들러 구현하고 있음
+          -> 레지스테이트 값? 
+    3. 요청 정보 ( open() )
+    4. 요청 보내기 (send() )
+    5. 응답 처리 (Text(JSON), xml )
+    */
+        let xhr = null;
+          function getInstance(){
+        	  if(window.XMLHttpRequest){ // 이게 옛날 방식(지금은 X)
+                  xhr = new XMLHttpRequest;
+              }else if(window.ActiveXObject){ //IE
+                  console.log("IE");
+              }else{
+                  throw new Error("Ajax 비동기 지원하지 않아요");
+              }
+        	  return xhr;
+          }
+          
+          function handlerStateChange(){
+              if(xhr.readyState == 4){ //서버에서 응답이 왔다면
+                  if(xhr.status >= 200 && xhr.status < 300){ //응답이 성공적이라면
+                      //서버가 클라이언트에게 전달한 (응답한) 데이터 형식
+                      //1. Text(html,txt,css,json)  2. xml
+                      //가공은 개발자 마음
+                      document.getElementById("ajaxload").innerHTML = xhr.responseText;
+                  }else{
+                      console.log("비정상 응답 : " + xhr.status);
+                  }
+              }
+          }
+          
+          function sendData(){
+        	  xhr = getInstance();
+        	  xhr.onreadystatechange = handlerStateChange;
+        	  //handlerStateChange() 아님
+        	  //주소전달은()안씀
+        	  //()쓰면 함수호출코드
+        	  
+        	  xhr.open("GET", "Ex04_Server.html");
+        	  xhr.send();
+          }
+    </script>
+</head>
+<body>
+    <h3>update a web page without reloading the page</h3>
+    <img src="images/1.jpg" style="width: 150px ; height: 150px">
+        
+    <h3>비동기 처리(ajax) 요청</h3>
+    <button onclick="sendData()">비동기 요청</button>
+    <div id="ajaxload">Data load ....</div>
+        
+        
+    <h3>동기식 데이터 요청 처리</h3>
+    <a href="Ex04_Server.html">동기 요청</a>
+
+</body>
+</html>
