@@ -3,14 +3,14 @@ import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
+@Getter @Setter @ToString @EqualsAndHashCode 
 @NoArgsConstructor @AllArgsConstructor @Builder
-@Getter @ToString @EqualsAndHashCode @Setter
 public class Board {  //SELECT * FROM jspboard
 	private int idx;  //jspboard 컬럼명과 동일
 	private String writer;

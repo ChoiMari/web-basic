@@ -1,0 +1,31 @@
+WEB-INF/
+├─ web.xml
+├─ lib/ (JSTL, JDBC 드라이버 등)
+├─ views/
+│ └─ dept/
+│ ├─ list.jsp
+│ ├─ view.jsp
+│ ├─ write.jsp
+│ └─ edit.jsp
+│ └─ common/
+│ ├─ top.jsp
+│ └─ bottom.jsp
+└─ classes/
+└─ kr/or/kosa/
+├─ controller/
+│ ├─ FrontController.java
+│ ├─ action/Action.java
+│ ├─ action/ActionForward.java
+│ └─ actions/
+│ ├─ DeptListAction.java
+│ ├─ DeptViewAction.java
+│ ├─ DeptWriteFormAction.java
+│ ├─ DeptWriteOkAction.java
+│ ├─ DeptEditFormAction.java
+│ ├─ DeptEditOkAction.java
+│ └─ DeptDeleteOkAction.java
+├─ dao/DeptDao.java
+├─ dto/Dept.java
+└─ utils/
+├─ ConnectionPoolHelper.java
+└─ EncodingFilter.java
