@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>중요</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    /*
+    [javascript] 자바스크립트에서는..
+    1. for(let index in Arrays){Array[index]}
+    2. Object(JSON) : for(let key in jsonObj){jsonobj[key]} // 객체의 for문돌리면 key값
+    3. array.forEach(function(value,index,array){}) 추가),  array.map()..
+    //파라미터 3개 다 안써도 되고 선택
+    
+    제이쿼리 에서는..
+    [jquery] $().each() 반복문
+    1. $(selector).each(function(){});  
+           >> ex) $('p').each(function(){ this활용 }); //-> 파라미터가 없으면 this를 쓰겠다는것..
+           가능은 하지만 권장하지는 않는다.. 파라미터 쓰는게 편하기 때문
+    2. $(selector).each(function(index){ this활용 });
+    3. $(selector).each(function(index , element){ element });  ^^  초급자
+    
+    [jquery] $.each()
+    1. $.each(Array or Object , function(){ this 활용 });
+    2. $.each(Array or Object , function(index){ this 활용 });
+    3. $.each(Array or Object , function(index ,element){ element });  초급자
+    
+    parameter JSON 객체라면
+    let obj = {name:"홍길동" , age:100};
+    $(obj).each(function(key, value){ value });
+    $.each(obj , function(key , value){ value})
+    */
+    
+    $(function(){
+    	$('p').each(function(){//콜백함수에 파라미터가 없다? this를 활용하겠다는것.
+    			//this : 반복문 실행 돌릴때의 p태그 요소 하나하나(총 4개 나옴)
+    		  //처음 돌릴때 this값 : <p>java</p>	
+    	   //모든 p를 찾아서 반복 돌린다
+    		console.log("this : " + $(this).text());
+    		//그냥 this를 쓰면 자바스크립트의 기능만씀
+    		//$(this)를 쓰면 제이쿼리의 기능 쓸 수 있음
+    		
+    	});
+    	
+    	//인덱스로 id먹이면 편하다
+    	$('p').each(function(index){
+    		console.log(this);
+    		console.log("index : " + index); // p태그 인덱스값
+    		
+    		//$(this).arrt("id","param-"+index);
+    		//$(this).arrt("style","color:red");
+    		
+    		//제이쿼리 함수는 파라미터 json객체 권장
+    		$(this).attr({
+    			"id" : "param-"+index,
+    			"style":"color:red"
+    		});
+    	});
+    	
+        //결론 : 초급자에게 좋은 방법은 
+        // 파라미터를 잘 쓰는게 좋음
+        // 이왕 쓰는거 다 쓸 수 있음 좋다(코드해석)
+        
+        $('p').each(function(index,element){
+            console.log("index : " + index);
+            console.log("index : " + element);
+            console.log($(element).text());
+        });
+    	
+    	$('#btn').click(function(){
+    		alert($('#param-1').text);
+    	});
+    });
+    
+    
+    /* //배열
+        let arr = [];
+        arr.push("A");
+        
+        //객체
+        let obj = {};
+        
+        //객체 배열
+        let objarr = [{},{},{}];
+    */
+    
+    const array = [
+        {"name":"naver" , "link":"http://www.naver.com"},
+        {"name":"daum"  , "link":"http://www.daum.net"},
+        {"name":"kosa"  , "link":"http://www.kosa.or.kr"}
+    ]
+    
+    //문제) $.each()문을 사용해서 name속성의 value값, link속성의 value값 출력
+    $.each(array, function(index, obj){
+    	console.log(obj.name + ", " + obj["link"]);
+    });
+    
+    //객체 안의 객체배열
+    const boardObj = {
+            values: [
+                      {no:1 , title:"hello world"},
+                      {no:2 , title:"korea"},
+                      {no:3 , title:"kosa world"}
+                    ],
+            search:"검색"        
+    }
+    
+    $.each(boardObj.values, function(index, obj){
+    	console.log(index + " , " + obj.no + " , " + obj.title);
+    });
+    
+    $.each(boardObj, function(key, values){
+    	//console.log(key + "---" + values);
+    	if(typeof(values) == "object"){
+    		//[{}{}{}]
+    		$.each(values,function(index, obj){
+    			console.log(index + "/" + obj["no"] + " / " + obj["title"]);
+    		});
+    	}else{
+    		console.log(key + " / " + values);
+    	}
+    })
+    </script>
+</head>
+<body>
+    <p>java</p>
+    <p>jsp</p>
+    <p>oracle</p>
+    <p>jquery</p>
+    <input type="button" value="클릭" id="btn" />
+</body>
+</html>

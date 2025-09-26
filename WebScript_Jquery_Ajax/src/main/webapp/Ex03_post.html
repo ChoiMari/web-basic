@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    /*
+    jQuery.post( url [, data ] [, success ] [, dataType ] )
+    
+    >>xmlHttpRequest >> xhr.open("POST","") 동일
+    //xmlHttpRequest이걸 썼다면 poen할때 post였을거라고
+    
+    1.bad -> 이건 안 좋은 방법
+      $.post("Ex03_Server.jsp?name=hong&pwd1004")
+    
+    2. 이것도 별로..인 방법
+    const name = $('#name').val();
+    const pwd  = $('#pwd').val();
+    const param = "name="+name+"&pwd="+pwd
+    $.post("Ex03_Server.jsp,param)
+      
+    가장 좋은 방법으로 만드는 법
+    3. good  (parameter를 json 객체로 만들어라)
+    const data = {"name":$('#name').val() ,"pwd":$('#pwd').val()}
+    $.post("Ex03_Server.jsp,data)
+    
+    $.post("Ex03_Server.jsp,{"name":$('#name').val() ,"pwd":$('#pwd').val()})
+    //-> 이건 유지보수에 힘드니까 변수로 빼라고..
+    
+    */
+    $(function(){
+    	$('#btn').click(function(){
+    			//키를 다 ""로 감싸야한다고 함(특정라이브러리 썼을때를 염두)
+    			const data = {"name" : $('#name').val(),
+    				           "pwd" : $('#pwd').val()};
+    			$.post("Ex03_server.jsp",data,function(responseText){
+    				$('#message').html(responseText);
+    			});
+    	});
+    });
+    </script>
+</head>
+<body>
+    이름:
+    <input type="text" id="name">
+    <br> 비번:
+    <input type="text" id="pwd">
+    <br>
+    <input type="button" id="btn" value="비동기 전송">
+    <br>
+    <hr>
+    <div id="message"></div>
+</body>
+</html>

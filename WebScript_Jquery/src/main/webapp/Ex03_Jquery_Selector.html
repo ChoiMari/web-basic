@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+     <script type="text/javascript">
+         $(document).ready(function(){
+        	 //$(document).ready 바디안의 모든 요소가 돔객체로 로딩되고 난 후라는 뜻
+        	 //https://www.w3schools.com/jquery/jquery_selectors.asp
+        	 //셀렉터 이해하기
+        	 $('body > *').css('color',"gold");
+        	 //바디안의 모든 요소(자식)한테 css를써라
+        	 $('div > *').css('color',"red");
+        	 $('input[type=text]').css('color',"green");
+        	 //input태그의 타입속성이 text인 요소만 css를 적용 컬러를 그린으로
+        	 $('input[type=text]').val('9999'); 
+        	 // input태그의 타입속성이 text인 value를 9999로 바꿈
+        	 
+        	 //자바스크립트와 제이쿼리를 혼합해서 쓸 수 있을까?
+        		//-> 가능하다
+        	setTimeout(()=>{
+        		const value = $('select > option:selected').val();
+        		alert("select tag value : " + value);
+        	},3000);//3초뒤에 콜백함수 실행
+         });
+         
+         /*
+         DOM script : p, div 태그는 value속성이 없어서
+            -> innerHTML, innerText를 사용하였음
+           input태그들은 value속성이 있음
+           그래서 이런게 가능함
+           document.getElementById("name").value;
+           
+         제이쿼리는 무엇으로 할까?
+          3가지가 있음(값제어)
+            -> val(), text(), html() 
+            -> 3가지 모두 값을 읽고, 쓸 수 있음
+            -> getter, setter의 역할 다함
+          val('홍길동')이렇게 값을 주면 씀 setter의 역할
+          val() 이렇게 값을 안주면 읽음 getter의 역할
+          
+          예)
+          $('#userid').val() 하면 값을 읽어옴
+          $('#userid').val("world") 하면 값을 씀
+         
+         */
+         
+         
+     </script>
+</head>
+<body>
+    <div>
+        <ul>
+            <li>사과</li>
+            <li>배</li>
+            <li>수박</li>
+        </ul>
+    </div>
+    <div>
+        <ul>
+            <li>사과2</li>
+            <li>배2</li>
+            <li>수박2</li>
+        </ul>
+    </div>
+    <input type="text" value="AAA">
+    <input type="text" value="BBB">
+    <input type="text" value="CCC">
+    <input type="password">
+    <input type="radio">
+    <input type="file">
+    <hr>
+    <table>
+        <tr>
+            <td>이름</td>
+            <td>나이</td>
+            <td>취미</td>
+        </tr>
+        <tr>
+            <td>홍길동</td>
+            <td>50</td>
+            <td>훔치기</td>
+        </tr>
+        <tr>
+            <td>이순신</td>
+            <td>10</td>
+            <td>싸움</td>
+        </tr>
+        <tr>
+            <td>학생</td>
+            <td>30</td>
+            <td>잠자기</td>
+        </tr>
+    </table>
+    <hr>
+    <select>
+        <option>농구</option>
+        <option>축구</option>
+        <option>야구</option>
+        <option>배구</option>
+    </select>
+</body>
+</html>

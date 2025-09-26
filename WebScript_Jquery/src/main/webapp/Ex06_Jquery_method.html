@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    /*
+     $('p').on(
+             {  //json
+                mouseenter:function(){ $(this).css('background-color','red') },
+                mouseleave:function(){$(this).css('background-color','green')},
+                click:function(){$(this).css('background-color','blue')}
+             }     
+           );
+           
+           $('button').click(function(){
+               $('p').off('click');
+           });
+    */
+           /*
+           append()- 선택된 요소의 끝에 콘텐츠를 삽입합니다.
+           prepend()- 선택된 요소의 시작 부분에 콘텐츠를 삽입합니다.
+            after()- 선택된 요소 뒤에 콘텐츠를 삽입합니다.
+            before()- 선택된 요소 앞에 콘텐츠를 삽입합니다.
+           
+           */
+           $(function(){
+        	   $('td:contains("홍길동")').addClass('redcolor');
+        	   // <td>홍길동</td>태그 찾음
+        	   /*
+        	   addClass()- 선택된 요소에 하나 이상의 클래스를 추가합니다.
+                removeClass()- 선택된 요소에서 하나 이상의 클래스를 제거합니다.
+                toggleClass()- 선택된 요소에 클래스를 추가하거나 제거하는 사이를 전환합니다.
+                css()- 스타일 속성을 설정하거나 반환합니다.
+        	   */
+        	   $('td:contains("홍길동")').siblings().addClass('bluecolor')
+        	   .parent()
+        	   .find('td:eq(0)')//필터함수
+        	   .addClass("greencolor");
+        	   $('#btnclick').on(
+        		{
+        		    click:function(){alert('click');}
+        	    });
+        	   
+        	   
+               $('#stylediv').on({
+                   mouseover:function(){
+                	   $('#stylediv').addClass('greencolor');
+                   },
+                   mouseout:function(){
+                	   $('#stylediv').removeClass('greencolor');
+                	   $('#stylediv').addClass('bluecolor');
+                   }
+               });
+           });
+     </script>
+     <style type="text/css">
+        .redcolor {
+            color: red
+        }
+        
+        .bluecolor {
+            color: blue
+        }
+        
+        .greencolor {
+            color: green
+        }
+        
+        .whitecolor {
+            color: white
+        }
+        </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>이름</td>
+            <td>나이</td>
+            <td>취미</td>
+        </tr>
+        <tr>
+            <td>홍길동</td>
+            <td>50</td>
+            <td>훔치기</td>
+        </tr>
+        <tr>
+            <td>이순신</td>
+            <td>10</td>
+            <td>싸움</td>
+        </tr>
+        <tr>
+            <td>학생</td>
+            <td>30</td>
+            <td>잠자기</td>
+        </tr>
+    </table>
+    <hr>
+    <h3>이벤트</h3>
+    <a href="http://www.naver.com">네이버 바로가기</a>
+    <hr>
+    <div id="btnclick">click</div>
+    <div id="stylediv">스타일적용</div>
+    <!-- 마우스 오버하면 녹색 , 때면 블루 -->
+</body>
+</html>
