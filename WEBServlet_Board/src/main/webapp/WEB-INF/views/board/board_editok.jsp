@@ -9,4 +9,4 @@
         location.href='board_list.do;
     </script>
 </c:if>
-<jsp:forward page="redirect.do"></jsp:forward>
+<jsp:forward page="/WEB-INF/views/board/redirect.do"></jsp:forward>

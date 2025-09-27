@@ -10,7 +10,7 @@
     	</script>
     </c:when>
     <c:otherwise>
-        <jsp:forward page="redirect.do"></jsp:forward>
+        <jsp:forward page="/WEB-INF/views/board/redirect.do"></jsp:forward>
     </c:otherwise>
 </c:choose>
 

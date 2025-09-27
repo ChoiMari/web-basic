@@ -23,7 +23,7 @@ out.print(board.getFilename() + "<br>");
 //write.jsp(클라이언트 화면) >> 처리 writeok.jsp >> service 만 노출 >> 업무 ...
 //
 </script>
-<jsp:forward page="redirect.do"></jsp:forward>
+<jsp:forward page="/WEB-INF/views/board/redirect.do"></jsp:forward>
 
 
 
