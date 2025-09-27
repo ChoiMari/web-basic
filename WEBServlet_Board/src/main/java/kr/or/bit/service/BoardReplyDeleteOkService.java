@@ -43,7 +43,7 @@ public class BoardReplyDeleteOkService implements Action{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return forward;
 	}
 
 }
