@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:choose>
     <c:when test="${requestScope.board == null}">
     데이터 오류
@@ -65,7 +65,7 @@
                             <tr>
                                 <td width="20%" align="center"><b> 글번호 </b></td>
                                 <td width="30%">
-                                    ${requestScope.idx} 
+                                ${requestScope.idx} 
                                     <input type="hidden" name="idx" value="${requestScope.idx}" ></td>
                                 <td width="20%" align="center"><b>작성일</b></td>
                                 <td>${requestScope.board.writedate}</td>
@@ -100,7 +100,7 @@
                             <tr height="100">
                                 <td width="20%" align="center"><b>글내용</b></td>
                                 <td colspan="3">
-                                    <textarea rows="7" cols="50" name="content">${requestScope.board.content}</textarea>
+                                    <textarea rows="7" cols="50" name="content">${fn:trim(requestScope.board.content)}</textarea>
                                 </td>
                             </tr>
     

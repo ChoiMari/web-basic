@@ -301,7 +301,7 @@
     <div class="glitter"></div>
     <nav class="navbar navbar-expand-lg custom-navbar">
         <div class="container-fluid px-4">
-            <a class="navbar-brand" href="index.jsp" data-bs-toggle="tooltip" title="⭐유정⭐하영⭐마리⭐">
+            <a class="navbar-brand" href="default.jsp" data-bs-toggle="tooltip" title="⭐유정⭐하영⭐마리⭐">
                 💖 4-TEAM 💖
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 

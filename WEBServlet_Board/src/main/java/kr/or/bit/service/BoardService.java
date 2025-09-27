@@ -79,7 +79,6 @@ public class BoardService {
 		//다른 테스트 (Board DTO Parameter 사용)
 		//request 요청 객체를 Parameter 사용 (장점 : view 코드 감소)
 		public int board_Edit(HttpServletRequest req) throws NamingException {
-			
 			return new BoardDao().boardEdit(req);
 		}
 	

@@ -206,7 +206,7 @@ public class FrontController extends HttpServlet {
 			viewPage = "/WEB-INF/views/board/board_content.jsp";//보여줄 뷰 지정
 		}else if(urlCommand.equals("/board_edit.do")) {
 			// 게시글수정
-
+			
 			try {
 				String idx = request.getParameter("idx");
 				if(idx == null || idx.trim().equals("")){
@@ -243,7 +243,7 @@ public class FrontController extends HttpServlet {
 						msg="edit success";
 						url="board_list.do";
 					}else{
-						msg="edit fail";
+						msg="edit fail : 비밀번호 틀렸다!";
 						url="board_edit.do?idx="+idx;
 					}
 					
@@ -264,7 +264,6 @@ public class FrontController extends HttpServlet {
 				String idx = request.getParameter("idx");
 				String pwd = request.getParameter("pwd");
 				
-				BoardService service = BoardService.getInBoardService();
 				int result = boardSvc.board_Delete(idx, pwd);
 				
 				String msg="";
@@ -316,6 +315,7 @@ public class FrontController extends HttpServlet {
 			viewPage = "/WEB-INF/views/board/redirect.jsp";//보여줄 뷰 지정
 			
 		}else if(urlCommand.equals("/board_rewriteok.do")) {
+			String idx = request.getParameter("idx");
 			String subject = request.getParameter("subject");
 			String writer = request.getParameter("writer");
 			String email = request.getParameter("email");
@@ -323,7 +323,7 @@ public class FrontController extends HttpServlet {
 			String content = request.getParameter("content");
 			String pwd = request.getParameter("pwd");
 			String filename = request.getParameter("filename");
-			Board board = Board.builder().subject(subject).writer(writer).email(email).homepage(homepage)
+			Board board = Board.builder().idx(Integer.parseInt(idx)).subject(subject).writer(writer).email(email).homepage(homepage)
 					.content(content).pwd(pwd).filename(filename).build();
 			
 			try {
@@ -402,6 +402,7 @@ public class FrontController extends HttpServlet {
 				    request.setAttribute("no",no);
 				    request.setAttribute("pwd",pwd);
 				    request.setAttribute("board_url", url);
+				    request.setAttribute("board_msg", msg);
 				    
 				    viewPage = "/WEB-INF/views/board/boardreply_deleteOk.jsp";
 			} catch (Exception e) {

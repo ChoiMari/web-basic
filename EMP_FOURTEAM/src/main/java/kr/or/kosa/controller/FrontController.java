@@ -108,21 +108,31 @@ public class FrontController extends HttpServlet {
 			String empno = request.getParameter("empno");
     		String ename = request.getParameter("ename");
     		String job = request.getParameter("job");
-    		String mgr = request.getParameter("mgr");
     		String hiredate = request.getParameter("hiredate");
     		String sal = request.getParameter("sal");
-    		String comm = request.getParameter("comm");
     		String deptno = request.getParameter("deptno");
-
-    		//TODO : 예외처리...    	
+    		String mgrStr = request.getParameter("mgr");
+    		String commStr = request.getParameter("comm");
+    		
+//    		Integer mgr = null;
+//    		Integer comm = null;
+//    		
+//    		if(mgrStr != null && mgrStr.trim().isEmpty()) {
+//    			mgr = Integer.parseInt(mgrStr);
+//    		}
+//    		if(commStr != null && commStr.trim().isEmpty()) {
+//    			comm = Integer.parseInt(commStr);
+//    		}
+    		
+    		//TODO : 유효성 검사 & 예외처리...    	
     		EmpDto empDto = EmpDto.builder()
     				.empno(Integer.parseInt(empno))
     				.ename(ename)
     				.job(job)
-    				.mgr(Integer.parseInt(mgr))
+    				.mgr(Integer.parseInt(mgrStr))
     				.hiredate(LocalDate.parse(hiredate)) 
     				.sal(Integer.parseInt(sal))
-    				.comm(Integer.parseInt(comm))
+    				.comm(Integer.parseInt(commStr))
     				.deptno(Integer.parseInt(deptno))
     				.build();
     		
