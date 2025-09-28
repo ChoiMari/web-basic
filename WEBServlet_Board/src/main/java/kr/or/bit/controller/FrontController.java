@@ -97,13 +97,17 @@ public class FrontController extends HttpServlet {
 		}else if(urlCommand.equals("/board_rewriteok.do")) {
 			action = new BoardRewriteOkService();
 			forward = action.excute(request, response);
-		}else if(urlCommand.equals("/board_replyok.do")) {
+		}
+		// 댓글 목록, 달기, 댓글 삭제는 비동기 처리(순서중요하지 않고 화면전환 필요없는경우, 
+		//데이터만 필요한경우 - 뷰 전체 갱신 필요없는 경우)
+		// 동기 처리는 순서가 중요한 연속 작업일 경우, 화면전환이 반드시 필요한 경우
+		/*else if(urlCommand.equals("/board_replyok.do")) { 
 			action = new BoardReplyOkService();
 			forward = action.excute(request, response);
 		}else if(urlCommand.equals("/boardreply_deleteOk.do")) {
 			action = new BoardReplyDeleteOkService();
 			forward = action.excute(request, response);
-		}
+		}*/
 		
 		if(forward != null) {
 			if(forward.isRedirect()) {
