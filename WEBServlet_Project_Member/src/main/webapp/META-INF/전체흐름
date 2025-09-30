@@ -1,0 +1,94 @@
+MVC 패턴 기반 회원가입 및 권한 처리 예제
+이 프로젝트는 Servlet, JSP, jQuery, Bootstrap을 사용하여 Model 2 (MVC) 패턴에 따른 
+회원 인증 및 페이지별 접근 권한 처리 방법을 보여주는 예제입니다.
+
+기술 스택
+Backend: Servlet
+
+Frontend: JSP, jQuery, Bootstrap
+
+Pattern: MVC (Model 2)
+
+프로젝트 구조
+
+├── src
+│   └── main
+│       ├── java
+│       │   └── com
+│       │       └── example
+│       │           ├── controller
+│       │           │   └── MemberController.java   # 서블릿 컨트롤러
+│       │           ├── filter
+│       │           │   └── AuthFilter.java         # 인증/권한 필터
+│       │           └── model
+│       │               ├── MemberDAO.java          # 데이터 액세스 객체
+│       │               └── MemberDTO.java          # 데이터 전송 객체
+│       └── webapp
+│           ├── WEB-INF
+│           │   └── web.xml                         # 배포 서술자
+│           ├── adminPage.jsp                       # 관리자 전용 페이지
+│           ├── userPage.jsp                        # 일반 사용자 전용 페이지
+│           ├── commonPage.jsp                      # 공통 페이지
+│           └── index.jsp                           # 메인 및 로그인 페이지
+└── README.md
+
+핵심 로직 설명
+1. 인증 (Authentication)
+로그인 요청: 
+사용자가 index.jsp에서 아이디와 비밀번호를 입력하고 '로그인' 버튼을 클릭하면,
+폼 데이터는 /member/login 경로로 POST 방식으로 전송됩니다.
+
+컨트롤러 처리:
+MemberController 서블릿이 이 요청을 받아 아이디와 비밀번호를 추출합니다.
+데이터베이스 확인: MemberDAO를 통해 데이터베이스(예제에서는 임시 데이터)에서 사용자 정보의 유효성을 검증합니다.
+
+세션 생성: 로그인에 성공하면, MemberDTO 객체에 사용자 정보를 담아 HttpSession에 "user"라는 이름으로 저장합니다.
+결과 응답: 로그인 성공 시 메인 페이지로 리다이렉트하고, 실패 시 경고창을 띄웁니다.
+
+2. 권한 부여 (Authorization)
+필터 (Filter Interception): 모든 /* 요청은 AuthFilter를 통과합니다.
+
+권한 정보 로드: 필터가 초기화될 때(init 메소드), 
+pageRoles라는 Map에 각 페이지 URL별로 필요한 권한을 미리 저장해 둡니다. (예: "/adminPage.jsp" -> "admin")
+
+실제 프로젝트에서는 이 정보를 데이터베이스나 설정 파일에서 읽어와 동적으로 관리하는 것이 좋습니다.
+
+접근 제어:
+사용자가 특정 페이지(예: /adminPage.jsp)에 접근을 시도하면, 
+필터는 먼저 pageRoles Map에서 해당 페이지에 필요한 권한("admin")이 있는지 확인합니다.
+만약 필요한 권한이 설정된 페이지라면, 현재 세션에서 "user" 객체를 가져옵니다.
+
+세션이 없거나 "user" 객체가 없다면, 로그인되지 않은 사용자로 간주하여 접근을 차단합니다.
+세션에서 가져온 사용자의 권한(user.getRole())과 페이지에 필요한 권한을 비교합니다.
+
+권한이 일치하면 요청을 그대로 통과시키고(chain.doFilter()), 일치하지 않으면 "접근 권한이 없습니다."라는 
+경고 메시지를 보낸 후 로그인 페이지로 리다이렉트합니다.
+권한 없는 페이지: pageRoles에 등록되지 않은 페이지(예: index.jsp)는 권한 체크 없이 누구나 접근할 수 있습니다.
+
+실행 방법
+Tomcat과 같은 WAS(Web Application Server)에 프로젝트를 배포하고 서버를 실행합니다.
+웹 브라우저에서 http://localhost:8080/프로젝트이름/으로 접속합니다.
+
+테스트 계정으로 로그인을 시도하고, 각 페이지 링크를 클릭하여 권한 처리가 올바르게 동작하는지 확인합니다.
+로그인 안 한 상태: adminPage.jsp, userPage.jsp 접근 시 차단됩니다.
+'user'로 로그인: adminPage.jsp 접근 시 차단됩니다.
+
+'admin'으로 로그인: 모든 페이지에 접근 가능합니다.
+-------------------------------------------------------------------------------------
+
+
+MemberController.java: 회원 관련 요청(로그인, 로그아웃, 회원가입 등)을 처리하는 서블릿 컨트롤러입니다.
+
+MemberDAO.java: 데이터베이스와 연동하여 회원 정보를 처리하는 클래스입니다.
+
+MemberDTO.java: 회원 정보를 담는 데이터 전송 객체입니다.
+
+AuthFilter.java: 페이지 접근 권한을 확인하는 필터입니다.
+
+web.xml: 서블릿과 필터를 등록하고 매핑하는 설정 파일입니다.
+
+index.jsp: 메인 페이지이자 로그인 UI를 담당하는 JSP 파일입니다.
+
+README.md: 프로젝트 설정 및 실행 방법에 대한 설명서입니다.
+
+--------------------------------------
