@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+/*
+펼침 연산자(복제 가능) 
+특정 객체나 또는 배열 값을 다른 객체 또는 배열로 복제하거나 옮길 때 
+편하게 사용하는 연산자
+*/
+        const obj = {
+            a : 10, 
+            b : 20 
+        };
+        let newObj = {...obj};
+        // 펼침 연산자 복제함
+        console.log(newObj);
+
+        const arr = [1,2,3];
+        let newArr = [...arr];
+
+        console.log(newArr);
+        //배열, 객체, 문자열 요소를 문해하거나 합치는데 사용
+        const arr3 = [3,2,1];
+        const arr4 = [4,5,6];
+
+        const combinArray = {...arr3, ...arr4};
+        consol.log(combinArray)
+
+        const arr5=[1,2,3];
+        const newArray =[10,...arr5,40,...combineArray];
+        console.log(newArray);
+
+       //객체 적용하기
+       const obj3 = {name : "길동"};
+       const obj4 = {age:25};
+       const combineObj = {...obj3,...obj4};
+       console.log(combineObj);
+
+       const person = {name : "김유신", age : 40}
+       //많이쓰는방법
+       const updatePerson ={...person,city:"seoul"};
+       console.log(updatePerson);
+
+        let user = {
+            name:"길동",
+            age:21,
+            city:"busan"
+        }
+        //user객체의 age 속성 값을 10으로 변경한 객체 하나 생성
+        // ...연산자는 기존에 있는 속성이라면
+        // 오버라이브 하고, 없으면 append함
+         const user2 = { ...user, age: 10, hobby: "독서" };
+        console.log(user2);
+</script>
+</head>
+<body>
+    
+</body>
+</html>

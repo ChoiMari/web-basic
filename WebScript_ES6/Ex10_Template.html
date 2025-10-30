@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    /*
+        템플릿 리터럴
+        자바스크립트에서 문자열을 입력 하는 형식 정의
+        ES6 백틱(back-tick) ``와 ${} 결합
+    */
+        const str = "hello world";
+        const str2 = `hello world`;
+
+        //차이점
+        const lang = "javascript";
+        const expression = "I love " + lang + "!";
+        console.log(expression);
+
+        //백틱 : 자바의 printf()와 비슷, 포맷팅
+        const expression2 = `I love ${lang}!`;
+        console.log(expression2);
+        //백틱 사용의 장점 - 함수 사용 가능
+        const expression3 = `I love ${lang.split('').reverse().join('')}!`;
+        console.log(expression3); //I love tpircsavaj!
+
+        const arr = ["바람", "비", "구름"];
+        console.log(arr.join('-'));
+        //바람-비-구름
+
+        const user4 = {
+            name : "순신",
+            age : 30,
+        };
+
+        const userData = `후후후... ${user4.name}은 이제... ${user4.age}입니다.`;
+        console.log(userData); //후후후... 순신은 이제... 30입니다.
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

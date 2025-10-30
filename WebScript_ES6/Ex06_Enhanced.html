@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+/*
+ES6 향상된 객체 리터럴 : JSON
+객체에 대한 표기를 좀 더 간결하게 하는 방법
+    (Enhanced Object Literal)
+    객체 표기를 좀 더 간결하게
+*/
+    const dataObj = {
+        language : "javascript",
+        conding:function(){
+            console.log(this.language + " coding");
+        }
+    };
+    // 객체생성하다 보면
+    const language = "java";
+    const dataObj2 = { language };  // 키와 value가 같다고 판단
+    // 키와 value가 같으면 생략하고 1개만 쓴다
+
+    //실제 사용은 뷰나 리엑트에서 사용함
+    //vue, reate 에서 사용
+    const dataObj3 = {
+        conding : function(){
+            console.log("hello world coding");
+        } 
+    }
+    dataObj3.coding();
+
+    //축약(리액트, vue)
+    const dataObj4 = {
+        coding(){ // 객체 함수 축약 표현이 가능
+            console.log("hello ");
+        }
+    }
+    dataObj4.coding();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	 <style>
+        #add-btn{
+            padding: 5px 10px;
+            border: 0;
+            background: #f80; 
+            color: white;
+            border-radius: 5px;
+        }
+        ul{ 
+            padding: 0; 
+            list-style-position: inside;
+        }
+        li{
+            border-bottom: 1px solid #999;
+            padding: 5px 0;
+        }
+        .active{ background:gold; } /* step3: 목록 클릭 스타일 */
+    </style>
+</head>
+<body>
+	<h1 id='title'>할일 목록</h1>
+    <button id="add-btn">목록 추가</button>
+    <ul id='list'>
+        <li>제목 1</li>
+        <li>제목 2</li>
+        <li>제목 3</li>
+        <li>제목 4</li>
+    </ul>
+</body>
+<script>
+        const title = document.getElementById("title");
+        const list = document.getElementById("list");
+        const li = document.getElementsByTagName("li");
+        const addbtn = document.getElementById("add-btn");
+
+        function activeItem(event){  //  함수 호출시 event  객체 parameter  받겠다 
+            console.log(event.target);
+            console.log(event.currentTarget);
+            //target : 이벤트가 발생한 바로 그요소를 직접적인 ...  ****
+            //currentTarget : 이벤트 리스너를 가지 요소           ****
+            if(event.target.nodeName == "LI"){  //DOM (장점 , 단점)  , SAX 
+                title.innerHTML = event.target.innerText;
+            }
+
+            //현재 선택한 요소 적용
+            //현재 요소 말고 다른 요소는 class  제거 ...
+            for(let i = 0 ; i < event.target.parentNode.children.length; i++){
+                event.target.parentNode.children[i].removeAttribute('class');
+            }    //event.target.parentNode.children > Array
+
+            event.target.setAttribute('class','active');
+
+
+        }
+
+        list.addEventListener("click",activeItem);
+        //addbtn.addEventListener("click",()=>{
+
+        //})
+        addbtn.addEventListener("click",function(){
+            let txt = prompt("제목입력");
+            if(txt != null){
+                list.innerHTML += '<li>' + txt + '</li>'; //누적 
+            }
+        });
+
+        //vue . react  (데이터 : localstorage)
+</script>
+</html>
+​

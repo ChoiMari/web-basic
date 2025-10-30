@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <a id="myAnchor" href="https://w3schools.com/">GO TO school</a>
+    <button class="btn">Button</button>
+</body>
+<script>
+        document.getElementById("myAnchor").addEventListener("click",function(event){
+            //나는 a 태그가 가지고 있는 기본 속성 >> href 로 이동 (default)
+        	 event.preventDefault();  //사용빈도가 있어요 // 특정 요소가 가지고 있는 기본 이벤트를 막겠다 ...
+             alert("hello world");
+        });
+
+        const btn = document.querySelector(".btn");
+
+        btn.addEventListener('click',function(e){
+            console.log(this); // <button class="btn">Button</button>
+           //event 객체 활용 
+            console.log(e.currentTarget); // <button class="btn">Button</button>  //화살표 표현식(this 다른의미 )
+            console.log(this === e.currentTarget);
+          });
+
+        /*
+          
+          ancestor.addEventListener("click", (e) => {
+              e.stopPropagation() // 이벤트 전파 방지
+              print('ancestor')
+        })
+
+
+
+        */
+</script>
+</html>

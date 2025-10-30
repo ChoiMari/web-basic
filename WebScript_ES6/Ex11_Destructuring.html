@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구조분해할당</title>
+    <script>
+        /*
+            ES6 구조 분해 할당
+            자바스크립트의 배열을 할당 하겠다는 뜻
+        */
+       const arr = [1,2,3,4];
+       const obj = {a:10, b:20, c:30};
+
+       const {a,b,c} = obj; // 알아서 각각 변수에 할당해줌
+       console.log(a); //10
+       console.log(b); //20
+       console.log(c); //30
+
+       const smith = {
+        lang: "javascript",
+        position:'front-end',
+        area:"kangnam",
+        hobby:"baseball",
+        age:90
+       };
+
+       //구조를 분해해서 이름이 같으면 할당 하겠다.
+       const {lang, area, age} = smith;
+       console.log(lang); //javascript
+       console.log(area);//kangnam
+       console.log(age);//90
+
+       //배열
+       const numbers = [11,22,33];
+       const [first, second, third] = numbers;
+       console.log(first);
+
+       const number3 = [1,2,3,4,5];
+       const [,,third3, fourth3] = number3;
+       console.log("third3 : " + third3); //3
+       console.log("fourth3 : " + fourth3);//4
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

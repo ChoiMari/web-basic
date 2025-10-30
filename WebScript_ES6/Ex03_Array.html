@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+      <p id="demo"></p>
+</body>
+<script>
+    /*
+      callback 함수 
+      어떤 논리(프로그램)에 의해서 호출 되는 함수 
+      지연된 함수 
+
+      Array 함수
+      https://www.w3schools.com/jsref/jsref_map.asp 
+      
+      1. Array.isArray()
+      2. Array.forEach(function(value,index,array){}) 배열의 개수 만큼 호출 
+      3. Array.map(callback) 조작 (새로운 배열을 만들어요 ... (조작 ..))
+      4. Array.filter(callback)
+      
+      *******************************************************
+      **처음 하시는 분 (연습 ... gpt 를 활용한 연습 문제 만들어주 ...)**
+      *******************************************************
+
+      const numbers = [65,44,2,7];
+      const newarr = numbers.map(()=> num * 10);
+      새로운 배열
+
+
+      . => class
+      # => id
+    */
+   function myFunc(){
+    const data = ["A","B","C","D"];
+    let x = document.getElementById("demo");
+    x.innerHTML = Array.isArray(data);
+   }
+  
+   myFunc();
+
+
+   const numbers = [45,5,9,46,25];
+   function myFunc2(value , index , array){
+      console.log(value, index , array);
+   }
+   numbers.map(myFunc2); //callback 논리에 의해서 호출 (map 함수가 정의한 논리에....)
+   
+   //numbers.forEach(()=>{})
+
+   numbers.forEach(myFunc2);  //myFunc2 논리에 의해서 배열의 개수 만큼 호출
+  
+   
+   const numbers2 = [65,44,85,7];
+   const newArray = numbers2.map(function(value,index,array){
+      return value *10 + index;    
+   });
+   //새로운 배열을 생성 조건은  : value *10 + index
+   //KEY POINT
+
+   console.log(newArray); // Array > Object 상속 > toString() {for...}
+
+   //응용
+   let evens = [2,4,6,8]
+   //화살표 함수
+   //기존 배열에 +1 한 새로운 배열을 만드세요
+   // let data =[]  evens for  data.push()...
+   //map 함수 이용
+
+   let odds = evens.map(value => value + 1);
+   console.log("odds :" ,odds);
+
+   //map 사용하지 않고
+   let arr = [];
+   evens.forEach(value => {
+      if(value % 2 === 0){
+         arr.push(value);
+      }    
+   })
+
+   console.log("arr",arr);
+
+   //react : map() 데이터 추가  , filter 데이터 삭제
+   //vue   : v-for
+   //filter 
+   let data = [2,5,6,9];
+
+   let filterData = data.filter(number => number % 2 === 0); 
+   console.log("filterData", filterData);
+
+   //////////////////////////////////////////////////////////////
+   //실무
+
+   //비동기 서버 요청 ... 서버에 전달 받은 데이터
+   //axios.get() ...
+   //$.ajax(...) ...
+   //fetch() ...
+   
+   const users = [  //객체 배열
+      {name:"홍길동",age:25},
+      {name:"김유신",age:30},
+      {name:"아무개",age:10}   
+   ];
+   
+   //회원의 이름만 출력
+   const nameArray = users.map(user => user.name);
+   console.log("nameArray",nameArray)
+ 
+   const numbers3 = [1,2,3,4,5];
+
+   //배열의 값이 짝수  홀수 를 명시하는 배열을 만들어라
+   //["홀수","짝수" ...]
+
+   const dataList = numbers3.map(number => { return number % 2 === 0 ? "even":"odd"});
+   console.log(dataList);
+   console.log(typeof(dataList));
+
+   //)
+   const boards = [  //backEnd > select id, title, content from board > 객체배열로 ...;
+      {id:1 , title:"첫번째 글" , content:"안녕 방가 방가"},  
+      {id:2 , title:"두번째 글" , content:"안녕 점심"},  
+      {id:3 , title:"세번째 글" , content:"안녕 저녁"},  
+      {id:4 , title:"네번째 글" , content:"안녕 지각 금지"},   
+   ];
+
+   //id 2인 글을 삭제 하고 나머지를 화면에 출력
+   const deleteBoardId = (boards,deleteId) => {
+      return boards.filter(board =>board.id !== deleteId); //삭제할려는 데이터 빼고 나머지에 필터에서 사용
+   };
+
+   //글을 삭제
+
+  const newBoardList = deleteBoardId(boards,2);
+
+  console.log(typeof(newBoardList));
+  console.log(newBoardList);
+  console.log("data " + JSON.stringify(newBoardList));
+  //정리 ....
+  const obj = {};
+  console.log("data" + obj);  //toString() 정의 되어지 않아서
+
+
+</script>
+
+</html>

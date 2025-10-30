@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 파라미터 값이 들어오지 않으면 default값을 쓰겠다.
+            Default parameter
+            기본값 인자,인수,매개변수
+
+            function call(param, param1, param2){
+            
+            }
+
+            function call(param=1, param1={}, param2="korean"){
+            
+            }
+            call(30, {name:"길동"} , "american") // 
+            call(); // 1, {} , korean
+
+        */
+
+        function printPersonData(height , weight , age){
+            let he = height || 100; //height가 0또는 ''빈문자열이면 100을 사용
+            let we = weight || 60;
+            let a = age || 50;
+
+            console.log(he,we,a);
+        }
+        printPersonData(10,20,30); // 10, 20, 30
+        printPersonData(); // 100, 60, 50
+        
+        
+        function printPersonData2(height2=100 , weight2=60 , age2=50){
+            console.log(height2,weight2,age2);
+        }
+        printPersonData2(10,20,30); // 10, 20, 30
+        printPersonData2(); // 100, 60, 50
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

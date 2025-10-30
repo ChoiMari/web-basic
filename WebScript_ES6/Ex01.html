@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    //document.getElementById("demo").innerHTML ="aaaaaa";
+  </script>
+</head>
+<body>
+      <p id="demo"></p>
+</body>
+<script>
+      /*
+        1. 자바 스크립트 (일급객체)
+        
+        1.1 함수가 변수에 할당
+        const add = function(){}
+        add()
+
+        1.2 함수가 객체 저장
+
+        const call = {add}  ,   
+        const calls = []    
+        안좋은 코드 : calls[0] = 10 ...  push() , pop() 
+        좋은 코드 stack (LIFO)
+        
+        1.3 함수가 매개변수로 전달
+        function hello(){
+           console.log("my call");
+        }
+        
+        function greeting(message ,name){ //이름 .... 
+           message(); //hello() 함수 호출
+        }
+
+        greeting(hello,"script");
+
+       1.4 함수를 리턴 (함수가 함수를 리턴)
+        function world(){
+           return () => { console.log("function return"); }
+        }    
+           
+        약속 : javascript 함수는 일급함수 (비밀요원 ... )
+
+      */
+      //화살표 함수
+      //Arrow functions (줄임 표현)
+      let foo = function(){ //익명함수
+          console.log("foo")
+      }
+      foo(); 
+
+      //ES6 2015 화살표 함수
+      let bar = () => console.log("bar 함수");
+      bar();
+
+      //매가변수 1개  return 함수
+      // let foo2 = function(x) { return x;}
+
+      //let foo2 = (x) => x;
+      let foo2 = x => x; 
+      let data = foo2(100);
+      console.log("data",data);
+
+      let hello;
+      //hello = function(val){return "hello" + val}
+      //hello = (val) => "hello" + val;
+       hello = val => "hello" + val;
+       const value = hello("world");
+       console.log(value);
+
+       document.getElementById("demo").innerHTML =value;
+        
+      //매개변수 2개 이상
+      //function call(x,y) {return x + y} or function call(x,y,z) {return x + y + z} 
+
+      let foo3 = (x,y) => x + y;
+      const value2 = foo3(10,30);
+      console.log(value2);
+
+      //실행블럭을 생략하는 기준 (논리가 필요하면 ... 지역변수 ,  if , case)
+      let foo4 = (a,b) => { 
+        let c = 100;
+        return a + b + c;
+      }
+
+      const value3 = foo4(10,20);
+      console.log(value3);
+
+      //약속 : 2차 (ES6  문법)
+
+      const arr = [10,20,30];
+      let arr2 = [];
+      arr2.push(1111);
+      arr2.push(222);
+
+      const v  =arr2.pop();
+      console.log(v);
+</script>
+</html>

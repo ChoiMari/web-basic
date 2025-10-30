@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+     
+</body>
+<script>
+    //javascript 객체 표기법 : JSON (리터럴 표기 )
+
+    let Member ={};
+    console.log(Member);
+
+    Member.name = "hong";
+    console.log(Member.name);
+
+    Member.age = 100;
+
+    //함수추가
+    Member.print = function(){
+      document.write("<br>" + this.name + " / " + this.age + "<br>");
+    }
+
+    Member.print();
+    /*
+      {
+         "name":"hong",
+         "age":100,
+         print:function(){}
+      }
+    */
+     const grade = {
+          "list": {"hong":10, "kim":20, "park":30},
+          "show":function(){
+             for(let key in this.list){  //of
+                document.write(key + " : " + this.list[key] + "<br>");
+             }
+          }
+     }
+
+     grade.show();
+
+     let arr = ["A","B","C"];
+     for(let index in arr){  //첨자 방번호
+      console.log(arr[index]);
+     }
+
+     //ES6
+     for(let value of arr){
+      console.log(value);
+     }
+
+     /*
+       let data = {
+            "list":{},
+             "list2":[{},{},{}]
+       }
+      구조를 많이 보자 : 공공API 불러다가 연습...
+
+     
+     */
+
+      let students =[];
+      students.push({"이름":"홍길동" , "국어":80 , "영어":90});
+      students.push({"이름":"아무개" , "국어":10 , "영어":50});
+      students.push({"이름":"이순신" , "국어":70 , "영어":90});
+
+     // [{} , {} , {}]
+     for(let index in students){
+      console.log(students[index] , students[index].이름 , students[index].국어);
+     }
+
+     //Quiz
+     let myCars;
+     myCars = {
+          "name":"john", "age":30 , "cars":[
+                                              {"name":"Ford","model":["Mustang","Focus"]},
+                                              {"name":"Bmw" ,"model":["520","x5","x7"]},
+                                              {"name":"Fiat","model":["500","Panda"]},
+                                           ]
+               }
+
+     //질문 : 차량이름 , 차량모델만 출력하세요
+     /*
+               Ford  : Mustang Focus
+               Bmw   : 502 ...
+     */
+
+    // of    , in 활용
+    for(let obj of myCars.cars){
+       document.write("차량이름 :" + obj.name );
+       for(let index in obj.model){
+           document.write(" " + obj.model[index]);
+       } 
+       document.write("<hr>");
+    }
+</script>
+</html>
