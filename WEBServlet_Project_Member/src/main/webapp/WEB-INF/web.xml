@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
+  <display-name>WEBServlet_Project_Member</display-name>
+   <!-- Welcome File List -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- 서블릿 및 필터는 @WebServlet, @WebFilter 어노테이션으로 자동 등록되므로,
+         별도의 설정이 필요하다면 여기에 추가합니다.
+         예를 들어, 필터에 초기 파라미터를 전달하는 등의 설정이 가능합니다. -->
+</web-app>

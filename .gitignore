@@ -1,6 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,eclipse
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,visualstudiocode,eclipse
 
+# lib 폴더 안 jar 파일 무시
+/lib/*.jar
+
+
 ### Eclipse ###
 .metadata
 bin/
